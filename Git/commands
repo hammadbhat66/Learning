@@ -1,0 +1,68 @@
+#Initialize current repository or create new one
+
+git init
+
+#Add all files to be committed
+
+git add .
+
+#Adding specific files to be committed
+
+git add Linux
+
+#commit the change with a message
+
+git commit -m "Addind function add"
+
+#check the status
+
+git status
+
+#change the information on name and email of owner
+
+git config --global user.name "Hammad"
+
+git config --global user.email "hammadbhat66@gmail.com"
+
+#check the cofiguration list
+
+git config --list
+
+#clone the git rpository
+
+git clone https://github.com/hammadbhat66/Learning.git
+
+#clone the repository on same directory
+
+git clone https://github.com/hammadbhat66/Learning.git .
+
+#pull data from the master
+
+git pull origin master
+
+#move/rename files
+
+git mv Git git
+
+#remove the file
+
+git rm pending
+
+#Commit without adding the updated files *not valid for new files
+
+git commit -a -m ""
+
+#show the log of commits
+
+git log
+
+#show the log of commits for 2
+
+git log -2
+
+#checkout the git repositories
+
+git remote -v
+
+#git remote add 
+
