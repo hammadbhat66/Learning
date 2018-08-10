@@ -1,0 +1,596 @@
+
+
+
+							CREATING TABLE Aircraft
+
+create table Aircraft(aid int not null primary key,aname varchar(30) not null,cruisingrange int);
+
+
+
+
+
+
+							CREATING TABLE Employees
+
+create table Employees(eid int not null primary key,ename varchar(30) not null,salary int);
+
+
+
+
+
+
+							CREATING TABLE Certified
+
+create table Certified(eid int references Employees(eid) not null,aid int references Aircraft(aid));
+
+
+
+
+
+
+
+
+							CREATING TABLE Flights
+
+create table Flights(flno int not null primary key,"from" varchar(30) not null,"to" varchar(30) not null,distance int,departs time,arrives time,price int);
+
+
+
+
+
+
+
+
+
+
+							POPULATING THE Aircraft Table
+
+
+                                                            ^
+Airlines_Schedule=# insert into Aircraft values(17471,'Boeing 747-8',14816);
+INSERT 0 1
+Airlines_Schedule=# insert into Aircraft values(17472,'Boeing 747-400',13446);
+INSERT 0 1
+Airlines_Schedule=# insert into Aircraft values(17473,'Boeing 747-200',14260);
+INSERT 0 1
+Airlines_Schedule=# insert into Aircraft values(17474,'Boeing 747-400ER',14205);
+INSERT 0 1
+Airlines_Schedule=# insert into Aircraft values(17475,'Boeing 747-400F',13451);
+INSERT 0 1
+Airlines_Schedule=# insert into Aircraft values(17476,'Boeing 747-8 VIP',14816);
+INSERT 0 1
+Airlines_Schedule=# insert into Aircraft values(17771,'Boeing 777-200ER',14260);
+INSERT 0 1
+Airlines_Schedule=# insert into Aircraft values(17772,'Boeing 777-200LR',17500);
+INSERT 0 1
+Airlines_Schedule=# insert into Aircraft values(17773,'Boeing 777-300',11500);
+INSERT 0 1
+Airlines_Schedule=# insert into Aircraft values(17371,'Boeing 737-600',5649);
+INSERT 0 1
+Airlines_Schedule=# insert into Aircraft values(17372,'Boeing 737-800',6639);
+INSERT 0 1
+Airlines_Schedule=# insert into Aircraft values(17373,'Boeing 737-900ER',5901);
+INSERT 0 1
+Airlines_Schedule=# insert into Aircraft values(23801,'Airbus A380',16112);
+INSERT 0 1
+Airlines_Schedule=# insert into Aircraft values(23802,'Airbus A380-900',15000);
+INSERT 0 1
+Airlines_Schedule=# insert into Aircraft values(23803,'Airbus A380-800',15200);
+INSERT 0 1
+Airlines_Schedule=# insert into Aircraft values(23201,'Airbus A320',5700);
+INSERT 0 1
+Airlines_Schedule=# insert into Aircraft values(23202,'Airbus A320 Prestige',5810);
+INSERT 0 1
+Airlines_Schedule=# insert into Aircraft values(23301,'Airbus A330 200F',7400);
+INSERT 0 1
+
+
+
+
+
+
+
+							POPULATING THE EMPLOYEES TABLE
+
+
+insert into employees values(1001,'Noah',80000);
+INSERT 0 1
+Airlines_Schedule=# insert into employees values(1002,'Trevor',85000);
+INSERT 0 1
+Airlines_Schedule=# insert into employees values(1003,'Liam',105000);
+INSERT 0 1
+Airlines_Schedule=# insert into employees values(1004,'William',165000);
+INSERT 0 1
+Airlines_Schedule=# insert into employees values(1005,'Alexander',125000);
+INSERT 0 1
+Airlines_Schedule=# insert into employees values(1006,'Ethan',62000);
+INSERT 0 1
+Airlines_Schedule=# insert into employees values(1007,'Jacob',95000);
+INSERT 0 1
+Airlines_Schedule=# insert into employees values(1008,'Michael',115000);
+INSERT 0 1
+Airlines_Schedule=# insert into employees values(1009,'Jayden',205000);
+INSERT 0 1
+Airlines_Schedule=# insert into employees values(1010,'Riley',183000);
+INSERT 0 1
+Airlines_Schedule=# insert into employees values(1011,'Bob',50000);
+INSERT 0 1
+
+
+
+
+
+
+
+
+
+
+
+
+							POPULATING THE FLIGHT TABLE
+
+
+
+
+
+Airlines_Schedule=# insert into Flights values(1004,'Delhi','Dubai',2204,'18:00:00','20:30:00',20000);
+INSERT 0 1
+Airlines_Schedule=# insert into Flights values(1451,'Mumbai','Malasiya',3597,'18:30:00','21:30:00',23500);
+INSERT 0 1
+                                       ^
+Airlines_Schedule=# insert into Flights values(2122,'Delhi','Mumbai',1150,'19:00:00','20:30:00',10500);
+INSERT 0 1
+Airlines_Schedule=# insert into Flights values(2784,'Delhi','Sringar',900,'19:00:00','20:15:00',5000);
+INSERT 0 1
+Airlines_Schedule=# insert into Flights values(2875,'Delhi','Lucknow',850,'19:30:00','20:45:00',4000);
+INSERT 0 1
+Airlines_Schedule=# insert into Flights values(1983,'Tokyo','Sapporo',819,'20:00:00','21:00:00',7000);
+INSERT 0 1
+
+Airlines_Schedule=# insert into Flights values(1192,'Tokyo','Fukuoka',883,'20:30:00','21:30:00',7100);
+INSERT 0 1
+Airlines_Schedule=# insert into Flights values(1934,'Sydney','Melbourne',706,'22:30:00','23:15:00',6500);
+INSERT 0 1
+Airlines_Schedule=# insert into Flights values(1837,'Sydney','Brisbane',800,'23:00:00','23:50:00',8500);
+INSERT 0 1
+insert into flights values(1485,'Los Angeles','Honolulu',2550,'17:00:00','20:00:00',90000);
+INSERT 0 1
+Airlines_Schedule=# insert into flights values(1486,'Los Angeles','Honolulu',2550,'19:00:00','22:00:00',100000);
+INSERT 0 1
+insert into flights values(1849,'Los Angeles','Chicago',12000,'16:25:00','18:45:00',25000);
+INSERT 0 1
+insert into flights values(1992,'Madison','phillidelphia',5000,'17:30:00','20:25:00',9400);
+INSERT 0 1
+Airlines_Schedule=# insert into flights values(1993,'phillidelphia','brooklyn',4000,'20:30:00','22:00:00',8600);
+INSERT 0 1
+Airlines_Schedule=# insert into flights values(1994,'brooklyn','california',8000,'22:30:00','01:00:00',12600);
+INSERT 0 1
+Airlines_Schedule=# insert into flights values(1995,'washington','Madison',7000,'01:10:00','03:05:00',9600);
+INSERT 0 1
+insert into flights values(1996,'brooklyn','NewYork',7000,'01:10:00','06:00:00',9600);
+INSERT 0 1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+							POPULATING THE CERTIFIED TABLE 
+
+
+Airlines_Schedule=# insert into Certified values(1002,17472);
+INSERT 0 1
+Airlines_Schedule=# insert into Certified values(1002,174372);
+INNERT 0 1
+Airlines_Schedule=# insert into Certified values(1003,17771);
+INSERT 0 1
+Airlines_Schedule=# insert into Certified values(1004,23801);
+INSERT 0 1
+Airlines_Schedule=# insert into Certified values(1005,23301);
+INSERT 0 1
+Airlines_Schedule=# insert into Certified values(1007,23202);
+INSERT 0 1
+Airlines_Schedule=# insert into Certified values(1008,17471);
+INSERT 0 1
+Airlines_Schedule=# insert into Certified values(1009,17773);
+INSERT 0 1
+Airlines_Schedule=# insert into Certified values(1009,23803);
+INSERT 0 1
+Airlines_Schedule=# insert into Certified values(1002,17473);
+INSERT 0 1
+Airlines_Schedule=# insert into Certified values(1002,17474);
+INSERT 0 1
+Airlines_Schedule=# insert into Certified values(1002,17476);
+INSERT 0 1
+
+Airlines_Schedule=# insert into certified values(1011,23201);
+INSERT 0 1
+
+
+
+
+
+
+
+
+
+
+
+							UPDATE
+ update aircraft set cruisingrange=900 where aid=23201;
+UPDATE 1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+								QUESTION and ANSWERS
+
+a. Find the names of aircraft such that all pilots certified to operate them earn more than $80,000. 
+
+ANS:
+Airlines_Schedule=# select Aircraft.aname from certified join Aircraft on certified.aid=Aircraft.aid join Employees on certified.eid =Employees.eid where Employees.salary>80000;
+        aname         
+----------------------
+ Boeing 747-400
+ Boeing 777-200ER
+ Airbus A380
+ Airbus A330 200F
+ Airbus A320 Prestige
+ Boeing 747-8
+ Boeing 777-300
+ Airbus A380-800
+ Boeing 747-200
+ Boeing 747-400ER
+ Boeing 747-8 VIP
+ Airbus A380-900
+(12 rows)
+
+
+
+
+
+
+
+
+
+
+b. For each pilot who is certified for more than three aircraft, find the eid and the maximum cruisingrange of the aircraft for which she or he is certified. 
+
+
+Airlines_Schedule=# select Certified.eid,max(cruisingrange)  from certified join Aircraft on certified.aid=Aircraft.aid join Employees on certified.eid =Employees.eid GROUP BY certified.eid having count(certified.eid)>3;
+
+
+ eid  |  max  
+------+-------
+ 1002 | 14816
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+c. Find the names of pilots whose salary is less than the price of the cheapest route from Los Angeles to Honolulu.
+
+
+select Employees.ename from Employees join certified on certified.eid =employees.eid where Employees.salary<(select price from Flights where "from" ='Los Angeles' and "to"='Honolulu' and price=(select max(price) from Flights)) group by ename;
+
+
+
+
+
+
+
+
+
+
+
+
+d. For all aircraft with cruisingrange over 1000 miles, find the name of the aircraft and the average salary of all pilots certified for this aircraft.
+
+Airlines_Schedule=# select Aircraft.aname,avg(Employees.salary) from certified join Aircraft on certified.aid=Aircraft.aid join Employees on certified.eid =Employees.eid where aircraft.cruisingrange>1000 group by aname;
+        aname         |         avg         
+----------------------+---------------------
+ Airbus A320 Prestige |  95000.000000000000
+ Boeing 747-8         | 115000.000000000000
+ Boeing 747-8 VIP     |  85000.000000000000
+ Boeing 777-300       | 205000.000000000000
+ Airbus A330 200F     | 125000.000000000000
+ Airbus A380          | 165000.000000000000
+ Boeing 777-200ER     | 105000.000000000000
+ Boeing 747-200       |  85000.000000000000
+ Airbus A380-800      | 205000.000000000000
+ Boeing 747-400       |  85000.000000000000
+ Boeing 747-400ER     |  85000.000000000000
+(11 rows)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+e. Find the names of pilots certified for some Boeing aircraft.
+
+
+Airlines_Schedule=# select Employees.ename from certified join Aircraft on certified.aid=Aircraft.aid join Employees on certified.eid =Employees.eid where Aircraft.aname like 'Boeing%' group by Employees.ename;
+  ename  
+---------
+ Liam
+ Michael
+ Jayden
+ Trevor
+(4 rows)
+
+
+
+
+
+
+
+
+
+
+
+f. Find the aids of all aircraft that can be used on routes from Los Angeles to Chicago. 
+
+
+
+Airlines_Schedule=# select Aircraft.aid from Aircraft where aircraft.cruisingrange>(select distance from flights where "from"='Los Angeles' and "to"='Chicago');
+  aid  
+-------
+ 17471
+ 17472
+ 17473
+ 17474
+ 17475
+ 17476
+ 17771
+ 17772
+ 23801
+ 23802
+ 23803
+(11 rows)
+
+
+
+
+
+
+
+
+
+
+
+
+
+g. Identify the routes that can be piloted by every pilot who makes more than $100,000. 
+
+Airlines_Schedule=# select flights.from,flights.to from flights where distance <(select min(Aircraft.cruisingrange) from Certified join Employees on Certified.eid=Employees.eid join Aircraft on Aircraft.aid=Certified.aid where salary >100000);
+    from     |    to     
+-------------+-----------
+ Delhi       | Dubai
+ Mumbai      | Malasiya
+ Delhi       | Mumbai
+ Delhi       | Sringar
+ Delhi       | Lucknow
+ Tokyo       | Sapporo
+ Tokyo       | Fukuoka
+ Sydney      | Melbourne
+ Sydney      | Brisbane
+ Mumbai      | Lucknow
+ Los Angeles | Honolulu
+ Los Angeles | Honolulu
+(12 rows)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+h. Print the enames of pilots who can operate planes with cruisingrange greater than 3000 miles but are not certified on any Boeing aircraft. 
+
+
+Airlines_Schedule=# select employees.ename from certified join employees on certified.eid=Employees.eid join aircraft on aircraft.aid=certified.aid where aircraft.cruisingrange>3000 and aircraft.aname not like 'Boeing%';
+   ename   
+-----------
+ William
+ Alexander
+ Jacob
+ Jayden
+ Liam
+(5 rows)
+
+
+
+
+
+
+
+
+
+
+
+
+
+i. A customer wants to travel from Madison to New York with no more than two changes of flight. List the choice of departure times from Madison if the customer wants to arrive in New York by 6 p.m. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+j. Compute the difference between the average salary of a pilot and the average salary of all employees (including pilots). 
+
+Airlines_Schedule=# select avg(Employees.salary)-(select avg(salary) from employees) from Employees join Certified on Employees.eid=Certified.eid;
+     ?column?     
+------------------
+ 699.300699300699
+(1 row)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+k. Print the name and salary of every nonpilot whose salary is more than the average salary for pilots.
+
+
+
+
+Airlines_Schedule=# select * from Employees where eid not in(select eid from certified) and salary>(select avg(salary) from employees join certified on employees.eid=certified.eid);
+ eid  | ename | salary 
+------+-------+--------
+ 1010 | Riley | 183000
+(1 row)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+l. Print the names of employees who are certified only on aircrafts with cruising range longer than 1000 miles. 
+
+
+Airlines_Schedule=# select Employees.ename from certified join employees on certified.eid=Employees.eid join aircraft on aircraft.aid=certified.aid where aircraft.cruisingrange>1000;
+   ename   
+-----------
+ Trevor
+ Liam
+ William
+ Alexander
+ Jacob
+ Michael
+ Jayden
+ Jayden
+ Trevor
+ Trevor
+ Trevor
+ Liam
+(12 rows)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+m. Print the names of employees who are certified only on aircrafts with cruising range longer than 1000 miles, but on at least two such aircrafts.
+
+
+
+Airlines_Schedule=# select Employees.ename from certified join employees on certified.eid=Employees.eid join aircraft on aircraft.aid=certified.aid where aircraft.cruisingrange>1000 group by Employees.ename having count(ename)>1;
+ ename  
+--------
+ Liam
+ Jayden
+ Trevor
+(3 rows)
+
+
+
+
+
+
+
+
+
+
+
+
+
+n. Print the names of employees who are certified only on aircrafts with cruising range longer than 1000 miles and who are certified on some Boeing aircraft. 
+
+
+
+
+Airlines_Schedule=# select Employees.ename from certified join employees on certified.eid=Employees.eid join aircraft on aircraft.aid=certified.aid where aircraft.cruisingrange>1000 and aircraft.aname like 'Boeing%' group by Employees.ename having count(ename)>1;
+ ename  
+--------
+ Trevor
+(1 row)
+
+

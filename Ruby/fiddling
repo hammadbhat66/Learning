@@ -1,0 +1,88 @@
+lass Ruby_Class
+	def initialize
+		puts "This initialize function will always run on calling the class implicitly0"
+	end
+
+	def sum(num_one,num_two)
+		$num_one =num_one
+		return num_two+num_one
+	end
+
+	def using_thevariables
+		return $num_one
+
+	end
+
+	def if_else(a)
+
+		puts "This is true" if a>10
+		if a>=20
+			puts "Hurray its greater than 20"
+		else
+			puts "Its less than 20"
+		end
+
+		
+	end
+
+	def case_it(day)
+		case day
+		when "monday"
+			puts "Today is the start of office"
+		when "tuesday"
+			puts "Today i am going to office"
+		when "wednesday"
+			puts "Today i am again going to office"
+		when "friday"
+			puts "Today i an important day"
+		when "saturday"
+			puts "Duh office"
+		when "sunday"
+			puts "I hate sundays"
+		else
+			"Where is tuesday"
+
+		end
+		
+		
+
+	end
+
+	def for_looping(loopit)
+		for i in loopit do
+			next if loopit
+		puts "Looping continues"+i.to_s
+
+
+		end
+
+
+	end
+
+
+end
+
+
+class Ruby_otherclass < Ruby_Class
+	def initialize
+		puts "This initialize of Ruby_otherclass"
+		puts $num_one
+	end
+
+	def sum(num_one,num_two)
+		return "This is second"+(num_two+num_one).to_s+"Hog destroyed"
+	end
+end
+
+
+
+
+callingit =Ruby_Class.new
+puts callingit.sum(10,20)
+puts callingit.using_thevariables
+puts $num_one
+callingit.if_else(23)
+callingit.case_it("sunday")
+callingit.for_looping(1..20)
+
+callingtwo=Ruby_otherclass.new
