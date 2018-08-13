@@ -23,4 +23,4 @@ end
 
 regex1=Regex.new
 regex1.phoneno_match("my phone no is : (911) 975-4522)")
-regex1.number_only("9560291142")
+regex1.number_only("1947")
