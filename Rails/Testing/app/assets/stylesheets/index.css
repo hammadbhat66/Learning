@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
+
+
+body, html {
+	margin: 0px;
+	height: 100%;
+	font-family: 'Montserrat', sans-serif;
+}
+body{
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#d0e4f7+0,0a77d5+0,73b1e7+100,87bcea+100 */
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#0307c1+0,a90329+0,ce00c7+0,3c0087+0,ce00c7+100 */
+background: rgb(3,7,193); /* Old browsers */
+background: -moz-linear-gradient(45deg, rgba(3,7,193,1) 0%, rgba(169,3,41,1) 0%, rgba(206,0,199,1) 0%, rgba(60,0,135,1) 0%, rgba(206,0,199,1) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(45deg, rgba(3,7,193,1) 0%,rgba(169,3,41,1) 0%,rgba(206,0,199,1) 0%,rgba(60,0,135,1) 0%,rgba(206,0,199,1) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(45deg, rgba(3,7,193,1) 0%,rgba(169,3,41,1) 0%,rgba(206,0,199,1) 0%,rgba(60,0,135,1) 0%,rgba(206,0,199,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0307c1', endColorstr='#ce00c7',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+background-repeat: repeat;
+
+}
+h1{
+ 	padding-top: 25%;
+ 	padding-bottom: 25%;
+ 	color: lightgrey;
+ 	text-align: center;
+
+}
+p{
+	text-align: center;
+	font-weight: bold;
+	color: lightgrey;
+
+}
+.submit{
+	margin: 0% 45%;
+	border-radius:10%;
+}
+main{
+	margin: 0% 45%;
+	padding-top: 20%;
+	padding-bottom: 25%;
+	color: lightgrey;
+}

@@ -1,0 +1,56 @@
+<doctype! html>
+<html>
+<head>
+<meta charset="UTF-8">
+    
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Introduction</title>
+<link rel="stylesheet" type="text/css" href="css/intro.css">
+</head>
+
+<body>
+  <div class="gridding">
+  <aside>
+    <figure>
+    	<div id="fig"></div>
+    
+        <figcaption>Hammad Bhat</figcaption>
+    </figure>
+    <img src="images/mobile_menu.png">
+    <nav>
+    	<ul>
+    		<li><a href="#">Home</a></li>
+    		<li><a href="#">About me</a></li>
+    		<li><a href="#">Portfolio</a></li>
+    		<li><a href="#">Contact</a></li>
+    	</ul>
+    </nav>
+
+  </aside>
+
+   <main>
+  	<h1>I am a Ruby on Rails Developer Trainee</h1>
+  	<p>Currently i am doing html and css so that i can make better designs in the future and build designs that suites my backend really well.Beautiful designs Beautiful code Beautiful World</p>
+  	<a  class ="ctc" href="#">my Portfolio</a>
+  </main>
+</div>
+
+<script>
+	(function() {
+		var menu = document.querySelector('ul');
+		var menulink = document.querySelector('img');
+		menulink.addEventListener('click',function(e){
+			menu.classList.toggle('active');
+			e.preventDefault();
+
+		});
+
+	})();
+
+
+</script>
+
+</body>
+
+
+</html>

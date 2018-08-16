@@ -1,0 +1,23 @@
+<link rel="stylesheet" type="text/css" href="/home/beryl-systems/Learning/Rails/Testing/app/assets">
+<h1>Add Some Categories</h1><hr>
+<p>Find me in app/views/categories/index.html.erb</p>
+<main>
+<%=form_for @categories do |cat|%>
+
+<%=cat.label :CategoryName%>
+<br>
+
+<%=cat.text_field :name%>
+
+<br>
+
+<br>
+<div class="submit">
+<%=cat.submit :submit %>
+</div>	
+
+
+<% end %>
+
+</main>
+
