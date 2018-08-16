@@ -1,0 +1,26 @@
+body ,html{
+	margin: 0;
+	padding: 0;
+	border: 0;
+
+}
+h1{
+	text-align: center;
+	font-size: 56px;
+	margin-top:45%;
+	margin-bottom: 45%; 
+	color: #4A4444; 
+}
+h2{
+	text-align: center;
+	font-size: 46px;
+	margin-top:45%;
+	margin-bottom: 45%; 
+	color: #E5E5E5; 
+}
+
+/*Parallax start*/
+.parallax{
+	background: url("images/parallax.jpg");
+
+}

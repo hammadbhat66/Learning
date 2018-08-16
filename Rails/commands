@@ -1,0 +1,10 @@
+
+
+beryl-systems@berylsystems:~/Learning/Rails/E_commerce$ rails g model category
+Running via Spring preloader in process 25045
+      invoke  active_record
+      create    db/migrate/20180816044518_create_categories.rb
+      create    app/models/category.rb
+      invoke    test_unit
+      create      test/models/category_test.rb
+      create      test/fixtures/categories.yml
