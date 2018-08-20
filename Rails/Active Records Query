@@ -152,7 +152,14 @@
 
 
 
- #
+ #Ordering the results
+
+
+
+ 2.4.1 :058 > Category.order(id: :desc)
+  Category Load (0.2ms)  SELECT  "categories".* FROM "categories" ORDER BY "categories"."id" DESC LIMIT ?  [["LIMIT", 11]]
+ => #<ActiveRecord::Relation [#<Category id: 5, name: "Garments", available: true, no_of_items: 5, created_at: "2018-08-17 09:07:40", updated_at: "2018-08-17 09:07:40">, #<Category id: 4, name: "Bikes", available: true, no_of_items: 4, created_at: "2018-08-17 07:18:18", updated_at: "2018-08-17 07:18:18">, #<Category id: 3, name: "Electronics", available: true, no_of_items: 21, created_at: "2018-08-17 07:18:00", updated_at: "2018-08-17 07:18:00">, #<Category id: 2, name: "Glassware", available: true, no_of_items: 7, created_at: "2018-08-17 07:17:38", updated_at: "2018-08-17 07:17:38">, #<Category id: 1, name: "Furniture", available: true, no_of_items: 8, created_at: "2018-08-17 07:17:13", updated_at: "2018-08-17 07:17:13">]> 
+
 
 
 

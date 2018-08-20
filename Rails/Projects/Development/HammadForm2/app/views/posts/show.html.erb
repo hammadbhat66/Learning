@@ -1,0 +1,6 @@
+<h1>Showing the Posts</h1>
+<h4><%= @post.title %></h4>
+<p><%= @post.posting %>
+</p>
+<%= link_to "Delete Post", post_path(@post), method: :destroy, data:{confirm: "Are you sure about that?" } %>
+<%= link_to "Edit", edit_post_path(@post) %>
