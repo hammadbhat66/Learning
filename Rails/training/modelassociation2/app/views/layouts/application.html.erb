@@ -9,7 +9,11 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+
   <body>
+    <header>
+      <h1><%= link_to "Hammad Forum", root_path %></h1>
+    </header>
     <%= yield %>
   </body>
 </html>

@@ -13,3 +13,16 @@
  *= require_tree .
  *= require_self
  */
+body{
+
+}
+ul{
+	float:left;
+
+}
+ul li{
+	padding-left: 1em;
+	float: left;
+	
+
+}
