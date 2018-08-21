@@ -1,0 +1,48 @@
+
+					#Running the Rails c
+
+beryl-systems@berylsystems:~/Learning/Rails/training/assoc_hmt$ rails c
+Running via Spring preloader in process 30632
+Loading development environment (Rails 5.2.1)
+
+
+					#Checking the columns
+2.4.1 :003 > t1= Teacher.new
+ => #<Teacher id: nil, name: nil, alias_name: nil, created_at: nil, updated_at: nil> 
+
+
+					#Entring values in Teacher
+
+2.4.1 :004 > t1=Teacher.create(name:"Miss Kajol",alias_name:"kajol")
+   (0.2ms)  BEGIN
+  Teacher Create (0.8ms)  INSERT INTO "teachers" ("name", "alias_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["name", "Miss Kajol"], ["alias_name", "kajol"], ["created_at", "2018-08-21 12:56:29.133976"], ["updated_at", "2018-08-21 12:56:29.133976"]]
+   (12.8ms)  COMMIT
+ => #<Teacher id: 1, name: "Miss Kajol", alias_name: "kajol", created_at: "2018-08-21 12:56:29", updated_at: "2018-08-21 12:56:29"> 
+
+
+					#with t1 entring values in Student
+
+
+2.4.1 :005 > t1.students.new
+ => #<Student id: nil, name: nil, classe: nil, created_at: nil, updated_at: nil> 
+
+
+					
+2.4.1 :007 > t1.students.create(name:"Hammad",classe:"2nd Year")
+   (0.3ms)  BEGIN
+  Student Create (0.8ms)  INSERT INTO "students" ("name", "classe", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["name", "Hammad"], ["classe", "2nd Year"], ["created_at", "2018-08-21 12:57:38.670662"], ["updated_at", "2018-08-21 12:57:38.670662"]]
+  Subject Create (0.7ms)  INSERT INTO "subjects" ("student_id", "teacher_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["student_id", 1], ["teacher_id", 1], ["created_at", "2018-08-21 12:57:38.708817"], ["updated_at", "2018-08-21 12:57:38.708817"]]
+   (88.4ms)  COMMIT
+ => #<Student id: 1, name: "Hammad", classe: "2nd Year", created_at: "2018-08-21 12:57:38", updated_at: "2018-08-21 12:57:38"> 
+
+
+
+
+					#Result
+
+
+2.4.1 :008 > Subject.all
+  Subject Load (0.5ms)  SELECT  "subjects".* FROM "subjects" LIMIT $1  [["LIMIT", 11]]
+ => #<ActiveRecord::Relation [#<Subject id: 1, name: nil, student_id: 1, teacher_id: 1, created_at: "2018-08-21 12:57:38", updated_at: "2018-08-21 12:57:38">]> 
+
+
