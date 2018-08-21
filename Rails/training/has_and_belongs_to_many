@@ -1,0 +1,130 @@
+							#Creating new Project of Has_And_Belongs_To_Many
+
+
+
+beryl-systems@berylsystems:~/Learning/Rails/training$ rails new has_and_belongs_to_manys -d postgresql
+
+
+							#Generation model named Teacher
+
+beryl-systems@berylsystems:~/Learning/Rails/training/has_and_belongs_to_manys$ rails g model Teacher name:string age:integer
+Running via Spring preloader in process 23097
+      invoke  active_record
+      create    db/migrate/20180821105139_create_teachers.rb
+      create    app/models/teacher.rb
+      invoke    test_unit
+      create      test/models/teacher_test.rb
+      create      test/fixtures/teachers.yml
+
+
+
+							#Generation model named Student
+beryl-systems@berylsystems:~/Learning/Rails/training/has_and_belongs_to_manys$ rails g model Student name:string age:integer
+Running via Spring preloader in process 23116
+      invoke  active_record
+      create    db/migrate/20180821105155_create_students.rb
+      create    app/models/student.rb
+      invoke    test_unit
+      create      test/models/student_test.rb
+      create      test/fixtures/students.yml
+
+
+
+							#Well first creating a database
+
+
+beryl-systems@berylsystems:~/Learning/Rails/training/has_and_belongs_to_manys$ rake db:create
+Created database 'has_and_belongs_to_manys_development'
+
+
+
+
+
+
+
+
+							#Migrating the db
+
+beryl-systems@berylsystems:~/Learning/Rails/training/has_and_belongs_to_manys$ rake db:migrate
+== 20180821105139 CreateTeachers: migrating ===================================
+-- create_table(:teachers)
+   -> 0.0854s
+== 20180821105139 CreateTeachers: migrated (0.0855s) ==========================
+
+== 20180821105155 CreateStudents: migrating ===================================
+-- create_table(:students)
+   -> 0.0563s
+== 20180821105155 CreateStudents: migrated (0.0564s) ==========================
+
+== 20180821105246 CreateSubjects: migrating ===================================
+-- create_table(:subjects)
+   -> 0.1395s
+== 20180821105246 CreateSubjects: migrated (0.1396s) ==========================
+
+
+
+
+							#Create migration JoinTable using CreateJoinTableStudentTeacher student teacher
+
+beryl-systems@berylsystems:~/Learning/Rails/training/has_and_belongs_to_manys$ rails g migration CreateJoinTableStudentTeacher student teacher
+Running via Spring preloader in process 26929
+      invoke  active_record
+      create    db/migrate/20180821115316_create_join_table_student_teacher.rb
+
+
+
+
+
+							#One again we run the migrate
+
+
+beryl-systems@berylsystems:~/Learning/Rails/training/has_and_belongs_to_manys$ rake db:migrate
+== 20180821115316 CreateJoinTableStudentTeacher: migrating ====================
+-- create_join_table(:students, :teachers)
+   -> 0.0015s
+== 20180821115316 CreateJoinTableStudentTeacher: migrated (0.0016s) ===========
+
+
+
+
+						#We wil runn Rails c to check the Results
+
+beryl-systems@berylsystems:~/Learning/Rails/training/has_and_belongs_to_manys$ rails c
+Running via Spring preloader in process 27387
+Loading development environment (Rails 5.2.1)
+2.4.1 :001 > 
+
+
+
+
+						#Created a Teacher Entry
+
+2.4.1 :001 > t1=Teacher.create(name:"Miss Briganza",age:31)
+   (0.2ms)  BEGIN
+Teacher Create (0.5ms)  INSERT INTO "teachers" ("name", "age", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["name", "Miss Briganza"], ["age", 31], ["created_at", "2018-08-21 11:59:54.284493"], ["updated_at", "2018-08-21 11:59:54.284493"]]
+   (72.8ms)  COMMIT
+ => #<Teacher id: 3, name: "Miss Briganza", age: 31, created_at: "2018-08-21 11:59:54", updated_at: "2018-08-21 11:59:54"> 
+
+
+
+
+
+
+						#with the t1 created student entry
+
+2.4.1 :002 > t1.students.create(name:"Hammad",age:24)
+   (0.2ms)  BEGIN
+  Student Create (0.5ms)  INSERT INTO "students" ("name", "age", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["name", "Hammad"], ["age", 24], ["created_at", "2018-08-21 12:00:16.101953"], ["updated_at", "2018-08-21 12:00:16.101953"]]
+  Teacher::HABTM_Students Create (0.4ms)  INSERT INTO "students_teachers" ("student_id", "teacher_id") VALUES ($1, $2)  [["student_id", 2], ["teacher_id", 3]]
+   (32.8ms)  COMMIT
+ => #<Student id: 2, name: "Hammad", age: 24, created_at: "2018-08-21 12:00:16", updated_at: "2018-08-21 12:00:16"> 
+2.4.1 :003 > 
+
+
+					
+
+
+
+
+
+
