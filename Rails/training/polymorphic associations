@@ -1,0 +1,277 @@
+					#Creating the new Project
+
+beryl-systems@berylsystems:~/Learning/Rails/training$ rails new polymorphic_association -d postgresql
+			
+
+
+
+
+					#Creation of the database
+
+beryl-systems@berylsystems:~/Learning/Rails/training/polymorphic_association$ rake db:create
+Created database 'polymorphic_association_development'
+
+
+
+
+					#Creating new models named Product
+
+beryl-systems@berylsystems:~/Learning/Rails/training/polymorphic_association$ rails g model Product name:string cost:float
+Running via Spring preloader in process 19970
+      invoke  active_record
+      create    db/migrate/20180821094917_create_products.rb
+      create    app/models/product.rb
+      invoke    test_unit
+      create      test/models/product_test.rb
+      create      test/fixtures/products.yml
+
+
+
+					#Creating new model named Employee
+
+beryl-systems@berylsystems:~/Learning/Rails/training/polymorphic_association$ rails g model Employee name:string age:integer
+Running via Spring preloader in process 20006
+      invoke  active_record
+      create    db/migrate/20180821094953_create_employees.rb
+      create    app/models/employee.rb
+      invoke    test_unit
+      create      test/models/employee_test.rb
+      create      test/fixtures/employees.yml
+
+
+
+					#Creating new model named Pictures
+
+beryl-systems@berylsystems:~/Learning/Rails/training/polymorphic_association$ rails g model Picture name:string imageable:references
+Running via Spring preloader in process 20053
+      invoke  active_record
+      create    db/migrate/20180821095055_create_pictures.rb
+      create    app/models/picture.rb
+      invoke    test_unit
+      create      test/models/picture_test.rb
+      create      test/fixtures/pictures.yml
+
+
+
+					#Migration the associations
+
+beryl-systems@berylsystems:~/Learning/Rails/training/polymorphic_association$ rake db:migrate
+== 20180821094917 CreateProducts: migrating ===================================
+-- create_table(:products)
+   -> 0.0841s
+== 20180821094917 CreateProducts: migrated (0.0842s) ==========================
+
+== 20180821094953 CreateEmployees: migrating ==================================
+-- create_table(:employees)
+   -> 0.0565s
+== 20180821094953 CreateEmployees: migrated (0.0566s) =========================
+
+== 20180821095055 CreatePictures: migrating ===================================
+-- create_table(:pictures)
+   -> 0.0896s
+== 20180821095055 CreatePictures: migrated (0.0897s) ==========================
+
+
+
+*has_many :pictures, as: :imageable should be defined in both the Product and Employee Migration
+*belongs_to :Employee and belongs_to :Product should be defined in Pictures
+
+
+*					#Rails Console
+
+beryl-systems@berylsystems:~/Learning/Rails/training/polymorphic_association$ rails c
+Running via Spring preloader in process 20735
+Loading development environment (Rails 5.2.1)
+2.4.1 :001 > 
+
+
+
+
+*					#Creating some Entries
+
+
+2.4.1 :001 > p1=Product.create(name:"juice",cost: 35)
+   (0.2ms)  BEGIN
+  Product Create (0.7ms)  INSERT INTO "products" ("name", "cost", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["name", "juice"], ["cost", 35.0], ["created_at", "2018-08-21 10:04:17.108003"], ["updated_at", "2018-08-21 10:04:17.108003"]]
+   (31.3ms)  COMMIT
+ => #<Product id: 1, name: "juice", cost: 35.0, created_at: "2018-08-21 10:04:17", updated_at: "2018-08-21 10:04:17"> 
+
+
+2.4.1 :002 > p1=Product.create(name:"milk",cost: 30)
+   (0.3ms)  BEGIN
+  Product Create (0.5ms)  INSERT INTO "products" ("name", "cost", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["name", "milk"], ["cost", 30.0], ["created_at", "2018-08-21 10:04:30.480489"], ["updated_at", "2018-08-21 10:04:30.480489"]]
+   (51.8ms)  COMMIT
+ => #<Product id: 2, name: "milk", cost: 30.0, created_at: "2018-08-21 10:04:30", updated_at: "2018-08-21 10:04:30"> 
+
+
+2.4.1 :003 > p1=Product.create(name:"biscuit",cost: 5)
+   (0.2ms)  BEGIN
+  Product Create (0.5ms)  INSERT INTO "products" ("name", "cost", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["name", "biscuit"], ["cost", 5.0], ["created_at", "2018-08-21 10:04:39.248494"], ["updated_at", "2018-08-21 10:04:39.248494"]]
+   (61.8ms)  COMMIT
+ => #<Product id: 3, name: "biscuit", cost: 5.0, created_at: "2018-08-21 10:04:39", updated_at: "2018-08-21 10:04:39"> 
+
+
+2.4.1 :004 > p1=Product.create(name:"rice",cost: 40)
+   (0.3ms)  BEGIN
+  Product Create (0.5ms)  INSERT INTO "products" ("name", "cost", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["name", "rice"], ["cost", 40.0], ["created_at", "2018-08-21 10:04:47.584541"], ["updated_at", "2018-08-21 10:04:47.584541"]]
+   (59.3ms)  COMMIT
+ => #<Product id: 4, name: "rice", cost: 40.0, created_at: "2018-08-21 10:04:47", updated_at: "2018-08-21 10:04:47"> 
+
+
+2.4.1 :005 > p1=Product.create(name:"chips",cost: 20)
+   (0.3ms)  BEGIN
+  Product Create (0.5ms)  INSERT INTO "products" ("name", "cost", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["name", "chips"], ["cost", 20.0], ["created_at", "2018-08-21 10:04:55.104715"], ["updated_at", "2018-08-21 10:04:55.104715"]]
+   (84.6ms)  COMMIT
+ => #<Product id: 5, name: "chips", cost: 20.0, created_at: "2018-08-21 10:04:55", updated_at: "2018-08-21 10:04:55"> 
+
+
+
+
+*						#With p1 reference creating entries in Pictures which will automatically fill the data:
+
+
+
+
+
+2.4.1 :010 > p1.pictures.create(name:"chips")
+   (0.2ms)  BEGIN
+  Picture Create (0.8ms)  INSERT INTO "pictures" ("name", "imageable_type", "imageable_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["name", "chips"], ["imageable_type", "Product"], ["imageable_id", 5], ["created_at", "2018-08-21 10:07:33.031841"], ["updated_at", "2018-08-21 10:07:33.031841"]]
+   (28.9ms)  COMMIT
+ => #<Picture id: 1, name: "chips", imageable_type: "Product", imageable_id: 5, created_at: "2018-08-21 10:07:33", updated_at: "2018-08-21 10:07:33"> 
+
+
+
+
+
+						#Finding the columns in Products to perform relation with Picture
+
+
+
+
+2.4.1 :011 > p1=Product.find(1)
+  Product Load (0.5ms)  SELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2  [["id", 1], ["LIMIT", 1]]
+ => #<Product id: 1, name: "juice", cost: 35.0, created_at: "2018-08-21 10:04:17", updated_at: "2018-08-21 10:04:17"> 
+
+
+
+
+						#Again Creating Relation
+2.4.1 :012 > p1.pictures.create(name:"juice")
+   (0.3ms)  BEGIN
+  Picture Create (0.4ms)  INSERT INTO "pictures" ("name", "imageable_type", "imageable_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["name", "juice"], ["imageable_type", "Product"], ["imageable_id", 1], ["created_at", "2018-08-21 10:09:23.724922"], ["updated_at", "2018-08-21 10:09:23.724922"]]
+   (71.8ms)  COMMIT
+ => #<Picture id: 2, name: "juice", imageable_type: "Product", imageable_id: 1, created_at: "2018-08-21 10:09:23", updated_at: "2018-08-21 10:09:23"> 
+
+
+
+2.4.1 :013 > p1=Product.find(2)
+  Product Load (0.5ms)  SELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2  [["id", 2], ["LIMIT", 1]]
+ => #<Product id: 2, name: "milk", cost: 30.0, created_at: "2018-08-21 10:04:30", updated_at: "2018-08-21 10:04:30"> 
+
+
+
+
+2.4.1 :014 > p1.pictures.create(name:"milk")
+   (0.3ms)  BEGIN
+  Picture Create (0.5ms)  INSERT INTO "pictures" ("name", "imageable_type", "imageable_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["name", "milk"], ["imageable_type", "Product"], ["imageable_id", 2], ["created_at", "2018-08-21 10:09:36.765038"], ["updated_at", "2018-08-21 10:09:36.765038"]]
+   (45.3ms)  COMMIT
+ => #<Picture id: 3, name: "milk", imageable_type: "Product", imageable_id: 2, created_at: "2018-08-21 10:09:36", updated_at: "2018-08-21 10:09:36"> 
+
+
+
+
+2.4.1 :015 > p1=Product.find(3)
+  Product Load (0.6ms)  SELECT  "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2  [["id", 3], ["LIMIT", 1]]
+ => #<Product id: 3, name: "biscuit", cost: 5.0, created_at: "2018-08-21 10:04:39", updated_at: "2018-08-21 10:04:39"> 
+
+
+
+
+2.4.1 :016 > p1.pictures.create(name:"biscuit")
+   (0.3ms)  BEGIN
+  Picture Create (0.5ms)  INSERT INTO "pictures" ("name", "imageable_type", "imageable_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["name", "biscuit"], ["imageable_type", "Product"], ["imageable_id", 3], ["created_at", "2018-08-21 10:09:46.844945"], ["updated_at", "2018-08-21 10:09:46.844945"]]
+   (76.8ms)  COMMIT
+ => #<Picture id: 4, name: "biscuit", imageable_type: "Product", imageable_id: 3, created_at: "2018-08-21 10:09:46", updated_at: "2018-08-21 10:09:46"> 
+
+
+
+
+
+
+						#Having relation with The Employee table too
+
+
+
+
+2.4.1 :017 > e1=employee.create(name:"hammad",age:"24")
+NameError: undefined local variable or method `employee' for main:Object
+	from (irb):17
+
+
+
+
+2.4.1 :018 > e1=Employee.create(name:"hammad",age:"24")
+   (0.2ms)  BEGIN
+  Employee Create (0.6ms)  INSERT INTO "employees" ("name", "age", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["name", "hammad"], ["age", 24], ["created_at", "2018-08-21 10:11:04.329499"], ["updated_at", "2018-08-21 10:11:04.329499"]]
+   (85.0ms)  COMMIT
+ => #<Employee id: 1, name: "hammad", age: 24, created_at: "2018-08-21 10:11:04", updated_at: "2018-08-21 10:11:04"> 
+
+
+
+
+2.4.1 :019 > e1=Employee.create(name:"raj",age:"32")
+   (0.3ms)  BEGIN
+  Employee Create (0.5ms)  INSERT INTO "employees" ("name", "age", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["name", "raj"], ["age", 32], ["created_at", "2018-08-21 10:11:15.325882"], ["updated_at", "2018-08-21 10:11:15.325882"]]
+   (31.3ms)  COMMIT
+ => #<Employee id: 2, name: "raj", age: 32, created_at: "2018-08-21 10:11:15", updated_at: "2018-08-21 10:11:15"> 
+
+
+
+
+2.4.1 :020 > e1=Employee.create(name:"vijay",age:"31")
+   (0.2ms)  BEGIN
+  Employee Create (0.5ms)  INSERT INTO "employees" ("name", "age", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["name", "vijay"], ["age", 31], ["created_at", "2018-08-21 10:11:23.221633"], ["updated_at", "2018-08-21 10:11:23.221633"]]
+   (73.1ms)  COMMIT
+ => #<Employee id: 3, name: "vijay", age: 31, created_at: "2018-08-21 10:11:23", updated_at: "2018-08-21 10:11:23"> 
+
+
+
+
+2.4.1 :021 > e1.pictures.create(name:"vijay")
+   (0.2ms)  BEGIN
+  Picture Create (0.5ms)  INSERT INTO "pictures" ("name", "imageable_type", "imageable_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["name", "vijay"], ["imageable_type", "Employee"], ["imageable_id", 3], ["created_at", "2018-08-21 10:11:57.609309"], ["updated_at", "2018-08-21 10:11:57.609309"]]
+   (112.9ms)  COMMIT
+ => #<Picture id: 5, name: "vijay", imageable_type: "Employee", imageable_id: 3, created_at: "2018-08-21 10:11:57", updated_at: "2018-08-21 10:11:57"> 
+
+
+
+
+2.4.1 :022 > e2=Employee.find(1)
+  Employee Load (0.5ms)  SELECT  "employees".* FROM "employees" WHERE "employees"."id" = $1 LIMIT $2  [["id", 1], ["LIMIT", 1]]
+ => #<Employee id: 1, name: "hammad", age: 24, created_at: "2018-08-21 10:11:04", updated_at: "2018-08-21 10:11:04"> 
+
+
+
+
+2.4.1 :023 > e1.pictures.create(name:"hammad")
+   (0.3ms)  BEGIN
+  Picture Create (0.4ms)  INSERT INTO "pictures" ("name", "imageable_type", "imageable_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["name", "hammad"], ["imageable_type", "Employee"], ["imageable_id", 3], ["created_at", "2018-08-21 10:12:25.791762"], ["updated_at", "2018-08-21 10:12:25.791762"]]
+   (32.1ms)  COMMIT
+ => #<Picture id: 6, name: "hammad", imageable_type: "Employee", imageable_id: 3, created_at: "2018-08-21 10:12:25", updated_at: "2018-08-21 10:12:25"> 
+
+
+
+
+
+
+
+					#Result
+
+
+2.4.1 :024 > Picture.all
+  Picture Load (0.5ms)  SELECT  "pictures".* FROM "pictures" LIMIT $1  [["LIMIT", 11]]
+ => #<ActiveRecord::Relation [#<Picture id: 1, name: "chips", imageable_type: "Product", imageable_id: 5, created_at: "2018-08-21 10:07:33", updated_at: "2018-08-21 10:07:33">, #<Picture id: 2, name: "juice", imageable_type: "Product", imageable_id: 1, created_at: "2018-08-21 10:09:23", updated_at: "2018-08-21 10:09:23">, #<Picture id: 3, name: "milk", imageable_type: "Product", imageable_id: 2, created_at: "2018-08-21 10:09:36", updated_at: "2018-08-21 10:09:36">, #<Picture id: 4, name: "biscuit", imageable_type: "Product", imageable_id: 3, created_at: "2018-08-21 10:09:46", updated_at: "2018-08-21 10:09:46">, #<Picture id: 5, name: "vijay", imageable_type: "Employee", imageable_id: 3, created_at: "2018-08-21 10:11:57", updated_at: "2018-08-21 10:11:57">, #<Picture id: 6, name: "hammad", imageable_type: "Employee", imageable_id: 3, created_at: "2018-08-21 10:12:25", updated_at: "2018-08-21 10:12:25">]> 
+2.4.1 :025 > 
+
+
+
