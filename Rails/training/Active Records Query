@@ -1,0 +1,272 @@
+1.Employee Type has_many users
+2.User belongs_to Employee
+
+
+
+
+
+
+							#Showing list of all the things in Employees 
+
+Employee.all
+  Employee Load (46.3ms)  SELECT  "employees".* FROM "employees" LIMIT $1  [["LIMIT", 11]]
+ => #<ActiveRecord::Relation [#<Employee id: 1, type_name: "Manager", created_at: "2018-08-21 05:08:42", updated_at: "2018-08-21 05:08:42">, #<Employee id: 2, type_name: "Developer", created_at: "2018-08-21 05:11:18", updated_at: "2018-08-21 05:11:18">, #<Employee id: 3, type_name: "Accountant", created_at: "2018-08-21 05:11:26", updated_at: "2018-08-21 05:11:26">, #<Employee id: 4, type_name: "Director", created_at: "2018-08-21 05:11:33", updated_at: "2018-08-21 05:11:33">, #<Employee id: 5, type_name: "Tester", created_at: "2018-08-21 05:11:39", updated_at: "2018-08-21 05:11:39">, #<Employee id: 6, type_name: "Customer Support", created_at: "2018-08-21 05:11:55", updated_at: "2018-08-21 05:11:55">, #<Employee id: 7, type_name: "Hero", created_at: "2018-08-21 05:40:28", updated_at: "2018-08-21 05:40:28">]>
+
+
+
+
+							#showing list of all the things in Users
+
+2.4.1 :019 > User.all
+  User Load (0.5ms)  SELECT  "users".* FROM "users" LIMIT $1  [["LIMIT", 11]]
+ => #<ActiveRecord::Relation [#<User id: 1, name: "Professor", full_name: "Illu Ju", age: 25, salary: 20000.0, employee_id: 1, created_at: "2018-08-21 05:10:21", updated_at: "2018-08-21 05:10:21">, #<User id: 2, name: "Fazlu", full_name: "Fazzu Kream", age: 27, salary: 25000.0, employee_id: 6, created_at: "2018-08-21 05:12:37", updated_at: "2018-08-21 05:12:37">, #<User id: 3, name: "Gigju", full_name: "Aja Champ", age: 48, salary: 65000.0, employee_id: 6, created_at: "2018-08-21 05:13:07", updated_at: "2018-08-21 05:13:07">, #<User id: 4, name: "Mergo", full_name: "Aklay", age: 22, salary: 19000.0, employee_id: 6, created_at: "2018-08-21 05:13:44", updated_at: "2018-08-21 05:13:44">, #<User id: 5, name: "Bira", full_name: "Bir Bira", age: 24, salary: 25000.0, employee_id: 6, created_at: "2018-08-21 05:14:12", updated_at: "2018-08-21 05:14:12">]> 
+
+
+
+
+							#Joining the table using .join()
+2.4.1 :005 > Employee.joins(:users)
+  Employee Load (25.9ms)  SELECT  "employees".* FROM "employees" INNER JOIN "users" ON "users"."employee_id" = "employees"."id" LIMIT $1  [["LIMIT", 11]]
+ => #<ActiveRecord::Relation [#<Employee id: 1, type_name: "Manager", created_at: "2018-08-21 05:08:42", updated_at: "2018-08-21 05:08:42">, #<Employee id: 6, type_name: "Customer Support", created_at: "2018-08-21 05:11:55", updated_at: "2018-08-21 05:11:55">, #<Employee id: 6, type_name: "Customer Support", created_at: "2018-08-21 05:11:55", updated_at: "2018-08-21 05:11:55">, #<Employee id: 6, type_name: "Customer Support", created_at: "2018-08-21 05:11:55", updated_at: "2018-08-21 05:11:55">, #<Employee id: 6, type_name: "Customer Support", created_at: "2018-08-21 05:11:55", updated_at: "2018-08-21 05:11:55">]> 
+2.4.1 :006 > Employee.joins(:users).limit 1
+
+
+
+							#Limiting the table entry using .limit
+
+  Employee Load (0.7ms)  SELECT  "employees".* FROM "employees" INNER JOIN "users" ON "users"."employee_id" = "employees"."id" LIMIT $1  [["LIMIT", 1]]
+ => #<ActiveRecord::Relation [#<Employee id: 1, type_name: "Manager", created_at: "2018-08-21 05:08:42", updated_at: "2018-08-21 05:08:42">]> 
+
+
+
+
+							#Joining table using sql query made possible by find_by_sql
+
+2.4.1 :010 > Employee.find_by_sql("select * from employees join users on employees.id = users.employee_id")
+  Employee Load (0.8ms)  select * from employees join users on employees.id = users.employee_id
+ => [#<Employee id: 1, type_name: "Manager", created_at: "2018-08-21 05:10:21", updated_at: "2018-08-21 05:10:21">, #<Employee id: 2, type_name: "Customer Support", created_at: "2018-08-21 05:12:37", updated_at: "2018-08-21 05:12:37">, #<Employee id: 3, type_name: "Customer Support", created_at: "2018-08-21 05:13:07", updated_at: "2018-08-21 05:13:07">, #<Employee id: 4, type_name: "Customer Support", created_at: "2018-08-21 05:13:44", updated_at: "2018-08-21 05:13:44">, #<Employee id: 5, type_name: "Customer Support", created_at: "2018-08-21 05:14:12", updated_at: "2018-08-21 05:14:12">]
+
+							#Finding something in the table using .find
+
+
+2.4.1 :015 > Employee.find(1)
+  Employee Load (0.3ms)  SELECT  "employees".* FROM "employees" WHERE "employees"."id" = $1 LIMIT $2  [["id", 1], ["LIMIT", 1]]
+ => #<Employee id: 1, type_name: "Manager", created_at: "2018-08-21 05:08:42", updated_at: "2018-08-21 05:08:42"> 
+
+
+
+
+
+							#Finding the first entry in the sorted table using .first
+2.4.1 :016 > Employee.first
+  Employee Load (0.4ms)  SELECT  "employees".* FROM "employees" ORDER BY "employees"."id" ASC LIMIT $1  [["LIMIT", 1]]
+ => #<Employee id: 1, type_name: "Manager", created_at: "2018-08-21 05:08:42", updated_at: "2018-08-21 05:08:42"> 
+
+
+
+
+							#Finding the last entry in the sorted table using .last
+2.4.1 :017 > Employee.last
+  Employee Load (0.4ms)  SELECT  "employees".* FROM "employees" ORDER BY "employees"."id" DESC LIMIT $1  [["LIMIT", 1]]
+ => #<Employee id: 7, type_name: "Hero", created_at: "2018-08-21 05:40:28", updated_at: "2018-08-21 05:40:28"> 
+
+
+
+
+							#Finding the first entry in the unsorted table using .take limiting to two entries using (2)
+2.4.1 :018 > Employee.take(2)
+  Employee Load (0.5ms)  SELECT  "employees".* FROM "employees" LIMIT $1  [["LIMIT", 2]]
+ => [#<Employee id: 1, type_name: "Manager", created_at: "2018-08-21 05:08:42", updated_at: "2018-08-21 05:08:42">, #<Employee id: 2, type_name: "Developer", created_at: "2018-08-21 05:11:18", updated_at: "2018-08-21 05:11:18">] 
+
+
+
+							#Finding something using .find_by
+
+2.4.1 :022 > User.find_by name: 'Professor'
+  User Load (0.5ms)  SELECT  "users".* FROM "users" WHERE "users"."name" = $1 LIMIT $2  [["name", "Professor"], ["LIMIT", 1]]
+ => #<User id: 1, name: "Professor", full_name: "Illu Ju", age: 25, salary: 20000.0, employee_id: 1, created_at: "2018-08-21 05:10:21", updated_at: "2018-08-21 05:10:21">
+
+
+
+							#Finding something using Condition .where
+
+
+2.4.1 :025 > User.where(name: 'Professor')
+  User Load (0.5ms)  SELECT  "users".* FROM "users" WHERE "users"."name" = $1 LIMIT $2  [["name", "Professor"], ["LIMIT", 11]]
+ => #<ActiveRecord::Relation [#<User id: 1, name: "Professor", full_name: "Illu Ju", age: 25, salary: 20000.0, employee_id: 1, created_at: "2018-08-21 05:10:21", updated_at: "2018-08-21 05:10:21">]> 
+
+
+							#Finding something using the ? with where
+
+
+2.4.1 :027 > User.where("name =?", 'Professor')
+  User Load (0.6ms)  SELECT  "users".* FROM "users" WHERE (name ='Professor') LIMIT $1  [["LIMIT", 11]]
+ => #<ActiveRecord::Relation [#<User id: 1, name: "Professor", full_name: "Illu Ju", age: 25, salary: 20000.0, employee_id: 1, created_at: "2018-08-21 05:10:21", updated_at: "2018-08-21 05:10:21">]>
+
+
+
+							#Finding something using string sql in .where()
+
+
+
+2.4.1 :029 > User.where("name = 'Professor'")
+  User Load (0.6ms)  SELECT  "users".* FROM "users" WHERE (name = 'Professor') LIMIT $1  [["LIMIT", 11]]
+ => #<ActiveRecord::Relation [#<User id: 1, name: "Professor", full_name: "Illu Ju", age: 25, salary: 20000.0, employee_id: 1, created_at: "2018-08-21 05:10:21", updated_at: "2018-08-21 05:10:21">]> 
+
+
+
+							#Finding some entries using Range ..
+
+
+
+2.4.1 :032 > User.where(created_at: (Time.now - 10.day)..Time.now)
+  User Load (0.6ms)  SELECT  "users".* FROM "users" WHERE "users"."created_at" BETWEEN $1 AND $2 LIMIT $3  [["created_at", "2018-08-14 05:28:00.929603"], ["created_at", "2018-08-24 05:28:00.929754"], ["LIMIT", 11]]
+ => #<ActiveRecord::Relation [#<User id: 1, name: "Professor", full_name: "Illu Ju", age: 25, salary: 20000.0, employee_id: 1, created_at: "2018-08-21 05:10:21", updated_at: "2018-08-21 05:10:21">, #<User id: 2, name: "Fazlu", full_name: "Fazzu Kream", age: 27, salary: 25000.0, employee_id: 6, created_at: "2018-08-21 05:12:37", updated_at: "2018-08-21 05:12:37">, #<User id: 3, name: "Gigju", full_name: "Aja Champ", age: 48, salary: 65000.0, employee_id: 6, created_at: "2018-08-21 05:13:07", updated_at: "2018-08-21 05:13:07">, #<User id: 4, name: "Mergo", full_name: "Aklay", age: 22, salary: 19000.0, employee_id: 6, created_at: "2018-08-21 05:13:44", updated_at: "2018-08-21 05:13:44">, #<User id: 5, name: "Bira", full_name: "Bir Bira", age: 24, salary: 25000.0, employee_id: 6, created_at: "2018-08-21 05:14:12", updated_at: "2018-08-21 05:14:12">]> 
+
+
+
+							#Finding like IN of sql where there are more conditions using [ ]
+
+
+User Load (0.8ms)  SELECT  "users".* FROM "users" WHERE "users"."id" IN ($1, $2, $3) LIMIT $4  [["id", 1], ["id", 3], ["id", 5], ["LIMIT", 11]]
+ => #<ActiveRecord::Relation [#<User id: 1, name: "Professor", full_name: "Illu Ju", age: 25, salary: 20000.0, employee_id: 1, created_at: "2018-08-21 05:10:21", updated_at: "2018-08-21 05:10:21">, #<User id: 3, name: "Gigju", full_name: "Aja Champ", age: 48, salary: 65000.0, employee_id: 6, created_at: "2018-08-21 05:13:07", updated_at: "2018-08-21 05:13:07">, #<User id: 5, name: "Bira", full_name: "Bir Bira", age: 24, salary: 25000.0, employee_id: 6, created_at: "2018-08-21 05:14:12", updated_at: "2018-08-21 05:14:12">]> 
+
+
+
+							#Finding the entries which is not in array of condition [] using .where.not
+
+
+2.4.1 :034 > User.where.not(id: [1,3,5])
+  User Load (0.5ms)  SELECT  "users".* FROM "users" WHERE "users"."id" NOT IN ($1, $2, $3) LIMIT $4  [["id", 1], ["id", 3], ["id", 5], ["LIMIT", 11]]
+ => #<ActiveRecord::Relation [#<User id: 2, name: "Fazlu", full_name: "Fazzu Kream", age: 27, salary: 25000.0, employee_id: 6, created_at: "2018-08-21 05:12:37", updated_at: "2018-08-21 05:12:37">, #<User id: 4, name: "Mergo", full_name: "Aklay", age: 22, salary: 19000.0, employee_id: 6, created_at: "2018-08-21 05:13:44", updated_at: "2018-08-21 05:13:44">]> 
+
+
+
+
+							#Finding entries using OR
+
+2.4.1 :036 > User.where(id: 1).or(User.where(id: 2))
+  User Load (0.5ms)  SELECT  "users".* FROM "users" WHERE ("users"."id" = $1 OR "users"."id" = $2) LIMIT $3  [["id", 1], ["id", 2], ["LIMIT", 11]]
+ => #<ActiveRecord::Relation [#<User id: 1, name: "Professor", full_name: "Illu Ju", age: 25, salary: 20000.0, employee_id: 1, created_at: "2018-08-21 05:10:21", updated_at: "2018-08-21 05:10:21">, #<User id: 2, name: "Fazlu", full_name: "Fazzu Kream", age: 27, salary: 25000.0, employee_id: 6, created_at: "2018-08-21 05:12:37", updated_at: "2018-08-21 05:12:37">]> 
+
+
+
+							#Finding entries using more OR
+
+2.4.1 :038 > User.where(id: 1).or(User.where(id: 8)).or(User.where(id: 3))
+  User Load (0.5ms)  SELECT  "users".* FROM "users" WHERE (("users"."id" = $1 OR "users"."id" = $2) OR "users"."id" = $3) LIMIT $4  [["id", 1], ["id", 8], ["id", 3], ["LIMIT", 11]]
+ => #<ActiveRecord::Relation [#<User id: 1, name: "Professor", full_name: "Illu Ju", age: 25, salary: 20000.0, employee_id: 1, created_at: "2018-08-21 05:10:21", updated_at: "2018-08-21 05:10:21">, #<User id: 3, name: "Gigju", full_name: "Aja Champ", age: 48, salary: 65000.0, employee_id: 6, created_at: "2018-08-21 05:13:07", updated_at: "2018-08-21 05:13:07">]> 
+
+
+							#Ordering the entries using .order 
+
+2.4.1 :040 > User.order(:created_at)
+  User Load (0.6ms)  SELECT  "users".* FROM "users" ORDER BY "users"."created_at" ASC LIMIT $1  [["LIMIT", 11]]
+ => #<ActiveRecord::Relation [#<User id: 1, name: "Professor", full_name: "Illu Ju", age: 25, salary: 20000.0, employee_id: 1, created_at: "2018-08-21 05:10:21", updated_at: "2018-08-21 05:10:21">, #<User id: 2, name: "Fazlu", full_name: "Fazzu Kream", age: 27, salary: 25000.0, employee_id: 6, created_at: "2018-08-21 05:12:37", updated_at: "2018-08-21 05:12:37">, #<User id: 3, name: "Gigju", full_name: "Aja Champ", age: 48, salary: 65000.0, employee_id: 6, created_at: "2018-08-21 05:13:07", updated_at: "2018-08-21 05:13:07">, #<User id: 4, name: "Mergo", full_name: "Aklay", age: 22, salary: 19000.0, employee_id: 6, created_at: "2018-08-21 05:13:44", updated_at: "2018-08-21 05:13:44">, #<User id: 5, name: "Bira", full_name: "Bir Bira", age: 24, salary: 25000.0, employee_id: 6, created_at: "2018-08-21 05:14:12", updated_at: "2018-08-21 05:14:12">]> 
+
+ 
+
+							#Order the entries with sorting :asc
+2.4.1 :046 > User.order(created_at: :asc)
+
+User Load (0.6ms)  SELECT  "users".* FROM "users" ORDER BY "users"."created_at" ASC LIMIT $1  [["LIMIT", 11]]
+ => #<ActiveRecord::Relation [#<User id: 1, name: "Professor", full_name: "Illu Ju", age: 25, salary: 20000.0, employee_id: 1, created_at: "2018-08-21 05:10:21", updated_at: "2018-08-21 05:10:21">, #<User id: 2, name: "Fazlu", full_name: "Fazzu Kream", age: 27, salary: 25000.0, employee_id: 6, created_at: "2018-08-21 05:12:37", updated_at: "2018-08-21 05:12:37">, #<User id: 3, name: "Gigju", full_name: "Aja Champ", age: 48, salary: 65000.0, employee_id: 6, created_at: "2018-08-21 05:13:07", updated_at: "2018-08-21 05:13:07">, #<User id: 4, name: "Mergo", full_name: "Aklay", age: 22, salary: 19000.0, employee_id: 6, created_at: "2018-08-21 05:13:44", updated_at: "2018-08-21 05:13:44">, #<User id: 5, name: "Bira", full_name: "Bir Bira", age: 24, salary: 25000.0, employee_id: 6, created_at: "2018-08-21 05:14:12", updated_at: "2018-08-21 05:14:12">]> 
+
+
+							@Ordering the entries with sorting desc in string
+
+
+2.4.1 :044 > User.order("created_at desc")
+  User Load (0.7ms)  SELECT  "users".* FROM "users" ORDER BY created_at desc LIMIT $1  [["LIMIT", 11]]
+ => #<ActiveRecord::Relation [#<User id: 5, name: "Bira", full_name: "Bir Bira", age: 24, salary: 25000.0, employee_id: 6, created_at: "2018-08-21 05:14:12", updated_at: "2018-08-21 05:14:12">, #<User id: 4, name: "Mergo", full_name: "Aklay", age: 22, salary: 19000.0, employee_id: 6, created_at: "2018-08-21 05:13:44", updated_at: "2018-08-21 05:13:44">, #<User id: 3, name: "Gigju", full_name: "Aja Champ", age: 48, salary: 65000.0, employee_id: 6, created_at: "2018-08-21 05:13:07", updated_at: "2018-08-21 05:13:07">, #<User id: 2, name: "Fazlu", full_name: "Fazzu Kream", age: 27, salary: 25000.0, employee_id: 6, created_at: "2018-08-21 05:12:37", updated_at: "2018-08-21 05:12:37">, #<User id: 1, name: "Professor", full_name: "Illu Ju", age: 25, salary: 20000.0, employee_id: 1, created_at: "2018-08-21 05:10:21", updated_at: "2018-08-21 05:10:21">]> 
+
+
+							#Selecting specific columns using select
+
+
+2.4.1 :047 > User.select(:created_at)
+  User Load (0.4ms)  SELECT  "users"."created_at" FROM "users" LIMIT $1  [["LIMIT", 11]]
+ => #<ActiveRecord::Relation [#<User id: nil, created_at: "2018-08-21 05:10:21">, #<User id: nil, created_at: "2018-08-21 05:12:37">, #<User id: nil, created_at: "2018-08-21 05:13:07">, #<User id: nil, created_at: "2018-08-21 05:13:44">, #<User id: nil, created_at: "2018-08-21 05:14:12">]>
+
+
+							#Selecting distinct :name and selecting specific columns
+
+2.4.1 :048 > User.select(:name).distinct
+  User Load (0.4ms)  SELECT  DISTINCT "users"."name" FROM "users" LIMIT $1  [["LIMIT", 11]]
+ => #<ActiveRecord::Relation [#<User id: nil, name: "Gigju">, #<User id: nil, name: "Professor">, #<User id: nil, name: "Fazlu">, #<User id: nil, name: "Bira">, #<User id: nil, name: "Mergo">]> 
+
+							#Limiting the Entries using .limit
+
+2.4.1 :050 > Employee.limit(2)
+  Employee Load (0.5ms)  SELECT  "employees".* FROM "employees" LIMIT $1  [["LIMIT", 2]]
+ => #<ActiveRecord::Relation [#<Employee id: 1, type_name: "Manager", created_at: "2018-08-21 05:08:42", updated_at: "2018-08-21 05:08:42">, #<Employee id: 2, type_name: "Developer", created_at: "2018-08-21 05:11:18", updated_at: "2018-08-21 05:11:18">]>
+
+
+							#Offseting the start point using .offset
+
+
+2.4.1 :051 > Employee.limit(2).offset(1)
+  Employee Load (0.4ms)  SELECT  "employees".* FROM "employees" LIMIT $1 OFFSET $2  [["LIMIT", 2], ["OFFSET", 1]]
+ => #<ActiveRecord::Relation [#<Employee id: 2, type_name: "Developer", created_at: "2018-08-21 05:11:18", updated_at: "2018-08-21 05:11:18">, #<Employee id: 3, type_name: "Accountant", created_at: "2018-08-21 05:11:26", updated_at: "2018-08-21 05:11:26">]> 
+
+							#Grouping using .group
+2.4.1 :067 > User.select("name,avg(salary)").group("name")
+  User Load (0.7ms)  SELECT  name,avg(salary) FROM "users" GROUP BY "users"."name" LIMIT $1  [["LIMIT", 11]]
+ => #<ActiveRecord::Relation [#<User id: nil, name: "Gigju">, #<User id: nil, name: "Professor">, #<User id: nil, name: "Fazlu">, #<User id: nil, name: "Bira">, #<User id: nil, name: "Mergo">]> 
+
+
+							#Using having in group
+
+2.4.1 :070 > User.select("name,avg(salary)").group("name").having("avg(salary)>=10000")
+  User Load (0.7ms)  SELECT  name,avg(salary) FROM "users" GROUP BY "users"."name" HAVING (avg(salary)>=10000) LIMIT $1  [["LIMIT", 11]]
+ => #<ActiveRecord::Relation [#<User id: nil, name: "Gigju">, #<User id: nil, name: "Professor">, #<User id: nil, name: "Fazlu">, #<User id: nil, name: "Bira">, #<User id: nil, name: "Mergo">]> 
+
+
+							#Using joins 
+2.4.1 :099 > Employee.joins("Inner join users on users.employee_id =employees.id")
+  Employee Load (0.8ms)  SELECT  "employees".* FROM "employees" Inner join users on users.employee_id =employees.id LIMIT $1  [["LIMIT", 11]]
+ => #<ActiveRecord::Relation [#<Employee id: 1, type_name: "Manager", created_at: "2018-08-21 05:08:42", updated_at: "2018-08-21 05:08:42">, #<Employee id: 6, type_name: "Customer Support", created_at: "2018-08-21 05:11:55", updated_at: "2018-08-21 05:11:55">, #<Employee id: 6, type_name: "Customer Support", created_at: "2018-08-21 05:11:55", updated_at: "2018-08-21 05:11:55">, #<Employee id: 6, type_name: "Customer Support", created_at: "2018-08-21 05:11:55", updated_at: "2018-08-21 05:11:55">, #<Employee id: 6, type_name: "Customer Support", created_at: "2018-08-21 05:11:55", updated_at: "2018-08-21 05:11:55">]> 
+
+
+							#Scope in User Model
+
+1.	scope :fullname, -> { where("full_name = 'Fazzu Kream'")}
+2    .2.4.1 :001 > User.fullname
+  User Load (0.9ms)  SELECT  "users".* FROM "users" WHERE (full_name = 'Fazzu Kream') LIMIT $1  [["LIMIT", 11]]
+ => #<ActiveRecord::Relation [#<User id: 2, name: "Fazlu", full_name: "Fazzu Kream", age: 27, salary: 25000.0, employee_id: 6, created_at: "2018-08-21 05:12:37", updated_at: "2018-08-21 05:12:37">]> 
+
+
+							#Using unscoped for not getting default scope and find_by_name for Dynamic Finder
+2.4.1 :002 > User.unscoped.find_by_name('Bira')
+  User Load (0.6ms)  SELECT  "users".* FROM "users" WHERE "users"."name" = $1 LIMIT $2  [["name", "Bira"], ["LIMIT", 1]]
+ => #<User id: 5, name: "Bira", full_name: "Bir Bira", age: 24, salary: 25000.0, employee_id: 6, created_at: "2018-08-21 05:14:12", updated_at: "2018-08-21 05:14:12"> 
+
+
+
+							#Using pluck to select specific columns
+
+2.4.1 :004 > User.unscoped.where("salary > 15000").pluck(:salary)
+   (0.6ms)  SELECT "users"."salary" FROM "users" WHERE (salary > 15000)
+ => [20000.0, 25000.0, 65000.0, 19000.0, 25000.0] 
+
+
+
+
+
+							#Using includes includes the columns of other table to be used
+
+2.4.1 :050 > Employee.includes(:users).joins(:users)
+  SQL (1.0ms)  SELECT  DISTINCT "employees"."id" FROM "employees" INNER JOIN "users" ON "users"."employee_id" = "employees"."id" AND (name = 'Professor') LIMIT $1  [["LIMIT", 11]]
+  SQL (0.8ms)  SELECT "employees"."id" AS t0_r0, "employees"."type_name" AS t0_r1, "employees"."created_at" AS t0_r2, "employees"."updated_at" AS t0_r3, "users"."id" AS t1_r0, "users"."name" AS t1_r1, "users"."full_name" AS t1_r2, "users"."age" AS t1_r3, "users"."salary" AS t1_r4, "users"."employee_id" AS t1_r5, "users"."created_at" AS t1_r6, "users"."updated_at" AS t1_r7 FROM "employees" INNER JOIN "users" ON "users"."employee_id" = "employees"."id" AND (name = 'Professor') WHERE "employees"."id" = $1  [["id", 1]]
+ => #<ActiveRecord::Relation [#<Employee id: 1, type_name: "Manager", created_at: "2018-08-21 05:08:42", updated_at: "2018-08-21 05:08:42">]> 
+2.4.1 :051 > Employee.includes(:users).joins(:users).pluck(:type_name, :name)
+
+
+
+							#Using pluck to narrow down the columns
+
+2.4.1 :051 > Employee.includes(:users).joins(:users).pluck(:type_name, :name)
+   (0.8ms)  SELECT "employees"."type_name", "name" FROM "employees" INNER JOIN "users" ON "users"."employee_id" = "employees"."id" AND (name = 'Professor')
+ => [["Manager", "Professor"]] 
+2.4.1 :052 > 
+
