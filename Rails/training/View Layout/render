@@ -1,0 +1,22 @@
+#Rendring
+render "new"
+
+
+render plain: "Hello"
+
+
+render html: helpers.tag.strong('Not Found')
+
+
+
+#Changing Layout
+
+
+#layout "inventory"
+
+
+#Redirecting 
+
+redirect_to @user
+
+

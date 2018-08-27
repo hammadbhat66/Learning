@@ -1,0 +1,104 @@
+							#validation using presence
+
+In the user model:
+validates :name, presence: true
+
+
+							#Validtion using presence and length
+
+In the model:
+validates :name, presence: true, length: {minimum: 2, }
+
+Rails c:
+
+#Giving name that is too short:
+2.4.1 :001 > User.create(name:"h",age: 20).errors
+   (0.2ms)  BEGIN
+   (0.2ms)  ROLLBACK
+ => #<ActiveModel::Errors:0xb4948b8 @base=#<User id: nil, name: "h", age: 20, created_at: nil, updated_at: nil>, @messages={:name=>["is too short (minimum is 2 characters)"]}, @details={:name=>[{:error=>:too_short, :count=>2}]}>
+
+
+#Without giving the name:
+2.4.1 :002 > User.create(age:20).errors
+   (0.3ms)  BEGIN
+   (0.2ms)  ROLLBACK
+ => #<ActiveModel::Errors:0xb467b74 @base=#<User id: nil, name: nil, age: 20, created_at: nil, updated_at: nil>, @messages={:name=>["can't be blank", "is too short (minimum is 2 characters)"]}, @details={:name=>[{:error=>:blank}, {:error=>:too_short, :count=>2}]}> 
+2.4.1 :003 > 
+
+
+2.4.1 :003 > User.create(age:20).errors.full_messages
+   (0.2ms)  BEGIN
+   (0.2ms)  ROLLBACK
+ => ["Name can't be blank", "Name is too short (minimum is 2 characters)"] 
+2.4.1 :004 > 
+
+							#Validation if numericality
+In the model
+validates :age, numericality: true
+
+In the Rails c:
+2.4.1 :008 > User.create(name:"Hammad",age:"E").errors
+   (0.3ms)  BEGIN
+   (0.3ms)  ROLLBACK
+ => #<ActiveModel::Errors:0xaf07bac @base=#<User id: nil, name: "Hammad", age: 0, email: nil, password: nil, created_at: nil, updated_at: nil>, @messages={:age=>["is not a number"]}, @details={:age=>[{:error=>:not_a_number, :value=>"E"}]}> 
+
+
+
+
+							#Validation of email format
+
+In the Model
+validates :email, presence: true,uniqueness: true, format: { with:/\b[A-Z0-9._%a-z\-]+@(?:[A-Z0-9a-z\-]+\.)+[A-Za-z]{2,4}\z/ }
+
+In the Rails c:
+#Typing wrong email format
+2.4.1 :028 > User.create(name:"Hammad",age:24,email:"ham").errors
+   (0.2ms)  BEGIN
+  User Exists (0.7ms)  SELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2  [["email", "ham"], ["LIMIT", 1]]
+   (0.1ms)  ROLLBACK
+ => #<ActiveModel::Errors:0xb1bb268 @base=#<User id: nil, name: "Hammad", age: 24, email: "ham", password: nil, created_at: nil, updated_at: nil>, @messages={:email=>["has already been taken", "is invalid"]}, @details={:email=>[{:error=>:taken, :value=>"ham"}, {:error=>:invalid, :value=>"ham"}]}> 
+
+
+
+#Typing right email format
+
+2.4.1 :029 > User.create(name:"Hammad",age:24,email:"hammadbhat66@gmail.com").errors
+   (0.3ms)  BEGIN
+  User Exists (0.5ms)  SELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2  [["email", "hammadbhat66@gmail.com"], ["LIMIT", 1]]
+  User Create (0.4ms)  INSERT INTO "users" ("name", "age", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["name", "Hammad"], ["age", 24], ["email", "hammadbhat66@gmail.com"], ["created_at", "2018-08-27 06:49:09.202429"], ["updated_at", "2018-08-27 06:49:09.202429"]]
+   (25.2ms)  COMMIT
+ => #<ActiveModel::Errors:0xa64ec04 @base=#<User id: 5, name: "Hammad", age: 24, email: "hammadbhat66@gmail.com", password: nil, created_at: "2018-08-27 06:49:09", updated_at: "2018-08-27 06:49:09">, @messages={}, @details={}> 
+
+
+
+
+In the Model:
+validates :name, presence: true, length: {minimum: 3, maximum: 15},exclusion: { in: %w(admin superuser)}
+							#Exclusion of Words
+In the Rails c:
+2.4.1 :033 > User.create(name:"admin",age:24,email:"hammadbhat66@gmail.com",password:"This").errors
+   (0.2ms)  BEGIN
+  User Exists (0.5ms)  SELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2  [["email", "hammadbhat66@gmail.com"], ["LIMIT", 1]]
+   (0.2ms)  ROLLBACK
+ => #<ActiveModel::Errors:0xa43bb60 @base=#<User id: nil, name: "admin", age: 24, email: "hammadbhat66@gmail.com", password: "This", created_at: nil, updated_at: nil>, @messages={:name=>["is reserved"], :email=>["has already been taken"]}, @details={:name=>[{:error=>:exclusion, :value=>"admin"}], :email=>[{:error=>:taken, :value=>"hammadbhat66@gmail.com"}]}> 
+
+
+
+
+
+
+							#Confirmation of password or email
+#In the Model
+validates_confirmation_of :password, if: :password_changed?
+
+#In the Controller you have to include the password_confirmation in params
+
+#In the Rails c
+
+2.4.1 :036 > User.create(name:"Hammad",age:24, email:"Hammadbhat66@yahoo.in",password:"whatisup",password_confirmation:"cool").errors
+   (0.2ms)  BEGIN
+  User Exists (0.4ms)  SELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2  [["email", "Hammadbhat66@yahoo.in"], ["LIMIT", 1]]
+   (0.3ms)  ROLLBACK
+ => #<ActiveModel::Errors:0xb1e5e3c @base=#<User id: nil, name: "Hammad", age: 24, email: "Hammadbhat66@yahoo.in", password: "whatisup", created_at: nil, updated_at: nil>, @messages={:password_confirmation=>["doesn't match Password"]}, @details={:password_confirmation=>[{:error=>:confirmation, :attribute=>"Password"}]}> 
+
+
