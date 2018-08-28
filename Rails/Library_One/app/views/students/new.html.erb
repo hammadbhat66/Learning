@@ -1,0 +1,27 @@
+<h1 id="header" onmouseover="ChangeText()" onmouseleave="ChangeTextBack()">This is the new Page</h1>
+<form action="/students" method="post" onsubmit="return ValidateForm()" name="myform">
+	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <p>Name</p>
+  <input type="text" name="name"><br>
+  <p>Address</p>
+  <input type="text" name="address" required><br>
+  <p>Institution</p><br>
+  <select name="studentinstitution" size="1">
+  	<option value="Rawal Institution">Rawal Institution</option>
+  	<option value="YMCA Institution">YMCA Institution</option>
+  	<option value="Manav Rachna University">Manav Rachna University</option>
+  	<option value="Alfalah University">Alfalah University</option>
+
+  </select><br>
+  <p>Father's Name</p>
+  <input type="text" name="fathers_name"><br>
+  <p>Phone No</p>
+  <input type="text" name="phone_no" value="+91 "><br><br>
+  <p>Gender:</p>
+  Male  :<input type="radio" name="gender" value="Male" checked><br>
+  Female:<input type="radio" name="gender" value="Female">
+  <br>
+
+  <input type="submit" name="submit"><br>
+
+</form>
