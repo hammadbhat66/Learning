@@ -9,18 +9,17 @@ class StudentsController < ApplicationController
   end
   def create
   	student=Student.new
-  
-  student.name=params[:name]
-  student.address=params[:address]
-  student.institution=params[:studentinstitution]
-  student.fathers_name=params[:fathers_name]
-  student.phone_no=params[:phone_no]
-  student.gender=params[:gender]
+    student.name=params[:name]
+    student.address=params[:address]
+    student.institution=params[:studentinstitution]
+    student.fathers_name=params[:fathers_name]
+    student.phone_no=params[:phone_no]
+    student.gender=params[:gender]
   	if student.save
-  	redirect_to student
-  else
-  	render 'new'
-  end
+  	  redirect_to student
+    else
+  	  render 'new'
+    end
 
   	
   

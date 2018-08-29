@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>HammadPage</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <nav>
+      <ul>
+        <li><a href="http://localhost:3000">Home</a></li>
+        <li><a href="#">About us</a></li>
+        <li><a href="http://localhost:3000/posts">Index</a></li>
+        <li><% if model_signed_in? %>
+          <%= link_to "Sign out",destroy_model_session_path,method: :delete; %>
+          <%end %>
+
+        </li>
+        
+       
+      </ul>
+
+    </nav>
+    <p class="notice"><%= notice %></p>
+       <p class="alert"><%= alert %></p>
+     <section id="yield">  
+    <%= yield %>
+  </section>
+  </body>
+</html>

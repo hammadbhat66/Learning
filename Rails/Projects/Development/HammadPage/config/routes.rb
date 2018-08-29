@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
   resources :posts
-  get 'students/index'
-  root 'students#index'
-  resources :students
+  get 'mainpage/index'
+  devise_for :models
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  post "/something" , to: 'students#create'
+  root 'mainpage#index'
 end

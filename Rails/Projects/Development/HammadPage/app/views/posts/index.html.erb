@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+<div class="mainupper">
+<div class="posthead">
+<h1 class="heading">Posts </h1>
+<h2><%= link_to 'New Post', new_post_path, :class => 'newpost' %><h2>
+  </div>
+
+
+  <tbody>
+    <% @posts.each do |post| %>
+      <hr class="stylehr">
+      <ul>
+        <li class="title"><%= link_to post.title.capitalize, post_path(post) %></li><br><p>posted by:<%= post.model.email %></p><br>
+        <li class="posting"><%= post.posting %></li><br>
+      <% if post.model == current_model%>
+        <li><%= link_to 'Edit', edit_post_path(post),:class => 'edit' %>
+        <%= link_to 'Destroy', post,:class => 'destroy' ,method: :delete, data: { confirm: 'Are you sure?' } %></li>
+        <% end %>
+      </ul>
+      
+      
+    <% end %>
+  </tbody>
+
+
+<br>
+
+
+
+</div>

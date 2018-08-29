@@ -1,0 +1,36 @@
+.center{
+	margin-top: 15%;
+	margin-right:auto;
+	margin-left: auto;
+	
+	text-align: center;
+
+}
+.logins{
+	
+	text-align: center;
+	background-color: white;
+	display: inline-block;
+	
+	padding: 25px;
+	border-radius: 2em;
+}
+.logins .field{
+	margin:15px;
+	color: #0171E2;
+}
+h2{
+	color: #22A9F7;
+}
+a{
+	text-decoration: none;
+	color: #22A9F7;
+}
+.action{
+	border-radius: 1em;
+	font-size: 1.4em;
+	
+	padding: 0px;
+	padding: 1em;
+	
+}

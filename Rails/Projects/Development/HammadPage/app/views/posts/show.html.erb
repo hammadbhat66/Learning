@@ -1,0 +1,23 @@
+<div class="center">
+<div class="logins">
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @post.title %>
+</p>
+
+<p>
+  <strong>Posting:</strong>
+  <%= @post.posting %>
+</p>
+<% form_for @comment do |com| %>
+
+  <%= com.text_area :comment %>
+
+<% end %> 
+<%= link_to 'Edit', edit_post_path(@post) %> |
+<%= link_to 'Back', posts_path %>
+
+</div>
+</div>

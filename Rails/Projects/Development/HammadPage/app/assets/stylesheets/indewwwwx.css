@@ -1,0 +1,89 @@
+
+.welcome{
+	
+	margin-top: 13%;
+	text-align: center;
+	font-family: 'Montserrat', sans-serif;
+	padding-top: 30px;
+	padding-bottom: 100px;
+}
+h1{
+	font-size: 4em;
+
+}
+.ctc{
+	background-color: blue;
+	color: white;
+	font-style: 1.4em;
+	text-decoration: none;
+	display: inline-block;
+	padding: 2em;
+	text-align: center;
+	border-radius: 5em;
+	font-size: 1.2em;
+}
+
+ a:hover{
+	color: pink;
+	background-color: white;
+}
+
+a{
+	color:blue;
+}
+
+
+.mainupper{
+	background-color: #f2f9ff;
+	
+	margin: 10%;
+	border-radius: 1em;
+	height:100%;               
+}
+ul{
+	list-style-type: none;
+}
+.title{
+	font-size: 3em;
+
+}
+.newpost{
+	margin-top: 0px;
+	float: right;
+	font-size: 1em;
+	margin-right: 5px;
+	background-color: blue;
+	color: white;
+	border-radius: 1em;
+	padding: 1em;
+}
+.posthead{
+	padding-top: 10px;
+text-align: center;
+
+}
+h1, h2{
+	display: inline-block;
+}
+h1{
+
+}
+.edit{
+	background-color: orange;
+	display: inline-block;
+	color: white;
+	border-radius: .2em;
+	padding: .2em;
+}
+.destroy{
+	background-color: red;
+	display: inline-block;
+	color: white;
+	border-radius: .2em;
+	padding: .2em;
+}
+hr.stylehr {
+	height: 10px;
+	border: 0;
+	box-shadow: 0 10px 10px -10px #8c8b8b inset;
+}

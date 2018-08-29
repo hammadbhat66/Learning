@@ -1,0 +1,9 @@
+<div class="welcome">
+<h1>Welcome to Hammad's Forum</h1>
+<p>Here you can login and post whatever you want to post please click on the above login button to proceed forward</p><br><br>
+<% if model_signed_in? %>
+<a href="http://localhost:3000/posts" class="ctc">Posts</a>
+<% else %>
+<a href="http://localhost:3000/models/sign_in" class="ctc">Login Here</a>
+<% end %>
+</div>

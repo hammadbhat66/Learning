@@ -1,0 +1,66 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+body{
+background: rgba(183,222,237,1);
+background: -moz-linear-gradient(left, rgba(183,222,237,1) 0%, rgba(33,180,226,1) 51%, rgba(0,177,242,1) 100%);
+background: -webkit-gradient(left top, right top, color-stop(0%, rgba(183,222,237,1)), color-stop(51%, rgba(33,180,226,1)), color-stop(100%, rgba(0,177,242,1)));
+background: -webkit-linear-gradient(left, rgba(183,222,237,1) 0%, rgba(33,180,226,1) 51%, rgba(0,177,242,1) 100%);
+background: -o-linear-gradient(left, rgba(183,222,237,1) 0%, rgba(33,180,226,1) 51%, rgba(0,177,242,1) 100%);
+background: -ms-linear-gradient(left, rgba(183,222,237,1) 0%, rgba(33,180,226,1) 51%, rgba(0,177,242,1) 100%);
+background: linear-gradient(to right, rgba(183,222,237,1) 0%, rgba(33,180,226,1) 51%, rgba(0,177,242,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b7deed', endColorstr='#00b1f2', GradientType=1 );
+}
+nav{
+	
+	top: 0px;
+	padding: 0px;
+	left: 0px;
+	float: right;
+	position: fixed;
+	width: 100%;
+
+
+
+	
+}
+nav ul{
+	float: right;
+	margin: 25px;
+}
+nav ul li{
+	
+	
+	
+
+	
+	float: left;
+	list-style-type: none;
+}
+nav ul li a{
+	    display: inline-block;
+		padding:5px; 
+	padding-left: 10px;
+	padding-right: 10px;
+		color: white;
+		text-decoration: none;
+		border-radius: 5em;
+		font-size: 1.2em;
+	background-color: #197AE9;
+	
+	color: white; 
+	margin: 10px;
+}
+
