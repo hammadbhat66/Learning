@@ -1,0 +1,8 @@
+<h1> MY NAME CONTROLLER </h1>
+
+<%= form_for @post do |post| %>
+<%= post.label :title %>
+<%= post.text_field :title %>
+<%= post.text_area :posting %>
+<%= post.submit :submit %>
+<% end %>

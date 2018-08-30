@@ -1,0 +1,6 @@
+<%= @post.title %><br>
+<%= @post.posting %>
+<%= form_for @comment do |com| %>
+<%=com.text_area :comment %>
+<%= com.submit :submit %>
+<% end %>
