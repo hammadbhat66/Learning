@@ -11,13 +11,32 @@
   <strong>Posting:</strong>
   <%= @post.posting %>
 </p>
-<% form_for @comment do |com| %>
+  <h4>Comments</h4>
 
-  <%= com.text_area :comment %>
+<p> 
+	<div class="loopcomment">
+	<% @comments.each do |com| %>
 
-<% end %> 
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
+	  <% if com.post_id == @post.id %>
+	   <strong>by:<%= com.model.email %></strong><%= com.comment %>
+      <% if com.model ==current_model %>
+     <%= link_to "Delete",post_comment_url(com),method: :delete,data: {comfirm: 'Are you'} %>
+     <% end %>
+     <br>
+
+	  <% end %>
+	<% end %>
+	</div>
+</p>
+<p>
+	<%= form_for ([@post,@comment]) do |com| %>
+      <%= com.text_area :comment%><br>
+      <%= com.submit %>
+    <% end %>
+
+</p>
+  <%= link_to 'Edit', edit_post_path(@post) %> |
+  <%= link_to 'Back', posts_path %>
 
 </div>
 </div>

@@ -11,9 +11,12 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
-    #@comment =@post.comments.new(params[:comment])
-    #@comment.model_id=current_model.id
-    #@comment.save
+    
+    @comment = Comment.new
+    @comments =Comment.all
+    @i =0
+
+    
   end
 
   # GET /posts/new
@@ -29,6 +32,7 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
+
     @post = current_model.posts.build(post_params)
 
     respond_to do |format|
@@ -65,6 +69,7 @@ class PostsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
 
   private
     # Use callbacks to share common setup or constraints between actions.

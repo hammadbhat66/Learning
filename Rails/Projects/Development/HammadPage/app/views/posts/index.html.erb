@@ -10,8 +10,9 @@
     <% @posts.each do |post| %>
       <hr class="stylehr">
       <ul>
-        <li class="title"><%= link_to post.title.capitalize, post_path(post) %></li><br><p>posted by:<%= post.model.email %></p><br>
-        <li class="posting"><%= post.posting %></li><br>
+        <li class="title"><%= link_to post.title.capitalize, post_path(post) %></li><br><br>
+        <li class="posting"><%= post.posting.truncate(50) %></li><br>
+        <li>Posted by: <%= post.model.email%></li>
       <% if post.model == current_model%>
         <li><%= link_to 'Edit', edit_post_path(post),:class => 'edit' %>
         <%= link_to 'Destroy', post,:class => 'destroy' ,method: :delete, data: { confirm: 'Are you sure?' } %></li>
