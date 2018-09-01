@@ -1,0 +1,54 @@
+<div class="index-home">
+  <div>
+
+  <h1 style='margin:2em;'>This is just a demo page for the Flipkart</h1>
+    <p>If you seriously want to buy something go buy yourself a god of war limited edition actionfigure</p>
+    <% if user_signed_in? %>
+    <%=link_to "Just go to Google", "http://google.com",class: 'login-icon' %>
+    <% else %>
+    <%=link_to "Log In",new_user_session_path,class: 'login-icon' %>
+  	<% end %>
+  </div>
+  
+  
+
+</div>
+<h2 style="text-align: center;">Check out These Great Deals</h2>
+<section>
+  	<div class="below-nav">
+  		<div class="below-nav-jeans">
+  		<h3>Jeans</h3>
+  		</div>
+  		<div class="below-nav-bikes">
+  			<h3>Bikes</h3>
+  		</div>
+  		<div class="below-nav-laptop">
+  			<h3>Laptops</h3>
+  		</div>
+  	</div>
+  </section>
+  <section>
+  	<div class="below-nav">
+  		<div class="below-nav-shirts">
+  		<h3>Shirt</h3>
+  		</div>
+  		<div class="below-nav-ethnic">
+  			<h3>Ethnic</h3>
+  		</div>
+  		<div class="below-nav-trouser">
+  			<h3></h3>
+  		</div>
+  	</div>
+  </section>
+  <h2 style="text-align: center;">New Offers</h2>
+  <section class="below-offer">
+  	<div class="below-offer-one">
+  		
+  	</div>
+
+  	<div class="below-offer-two">
+  		<h3 style="opacity: 1;">Latest Offer </h3>
+  	</div>
+
+  </section>
+  

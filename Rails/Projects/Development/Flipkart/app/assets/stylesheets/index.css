@@ -1,0 +1,115 @@
+.index-home{
+	background-image: url('/assets/headphone.jpg');
+	background-size: 100%;
+	height: 500px;
+	border:.1px black solid;
+	margin-top: 0px;
+	color: white;
+	font-weight: bold;
+	text-align: center;
+}
+.login-icon{
+	background-color: blue;
+	display: inline-block;
+	padding-left: 1.5em;
+	padding-right: 1.5em;
+	padding-top: .9em;
+	padding-bottom: .9em;
+	text-decoration: none;
+	color: white;
+	font-size: 1.5em;
+	border-radius: .5em;
+	margin-top:90px;
+}
+
+.login-icon:hover{
+	background-color: white;
+	color: blue;
+	transform: scale(1.1);
+}
+.below-nav{
+	height:300px;
+	border:.2px black solid;
+	display: grid;
+	grid-template-columns: auto auto auto;
+
+}
+.below-nav .below-nav-jeans{
+	height: 100%;
+	background-image: url(/assets/jeans.jpg);
+	background-size:100%;
+
+}
+.below-nav .below-nav-jeans:hover{
+	transform: scale(1.1);
+}
+
+.below-nav .below-nav-bikes{
+	height: 100%;
+	background-image: url(/assets/bikes.jpg);
+	background-size:cover;
+
+}.below-nav .below-nav-laptop{
+	height: 100%;
+	background-image: url(/assets/laptops.jpg);
+	background-size:100%;
+
+}.below-nav .below-nav-ethnic{
+	height: 100%;
+	background-image: url(/assets/ethnic.jpg);
+	background-size:100%;
+
+}.below-nav .below-nav-shirts{
+	height: 100%;
+	background-image: url(/assets/shirt.jpg);
+	background-size:100%;
+
+}.below-nav .below-nav-trouser{
+	height: 100%;
+	background-image: url(/assets/trouser.jpg);
+	background-size:100%;
+
+}
+.below-nav .below-nav-bikes:hover{
+	transform: scale(1.1);
+}
+.below-nav .below-nav-laptop:hover{
+	transform: scale(1.1);
+}
+.below-nav .below-nav-ethnic:hover{
+	transform: scale(1.1);
+}
+.below-nav .below-nav-shirts:hover{
+	transform: scale(1.1);
+}
+.below-nav .below-nav-trouser:hover{
+	transform: scale(1.1);
+}
+.below-offer{
+	-webkit-box-shadow: 0px 0px 2px 1px rgba(0,0,0,0.86);
+-moz-box-shadow: 0px 0px 2px 1px rgba(0,0,0,0.86);
+box-shadow: 0px 0px 2px 1px rgba(0,0,0,0.86);
+	margin-left: 20px;
+	margin-right: 20px;
+	height: 350px;
+	display: grid;
+	grid-template-columns: 80% 20%;
+	background-color: white;
+	border-radius: .1em;
+	opacity: .1;
+
+}
+.below-offer-one{
+	
+
+	}.below-offer-two{
+	border-left:1px solid black;
+	text-align: center
+
+	}
+footer{
+	margin-top: 20px;
+	height: 50px;
+	color: white;
+	background-color: #222b4c;
+}

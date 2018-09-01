@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Flipkart</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <nav class="nav">
+      <div class="nav-items">
+      <a href="http://localhost:3000"><img class="img" src="https://img1a.flixcart.com/www/linchpin/fk-cp-zion/img/flipkart-plus_4ee2f9.png"></a>
+      <%= notice %>
+      <%= alert %>
+      <ul>
+        <% if user_signed_in? %>
+        <li><%=link_to "Sign Out",destroy_user_session_path,:class =>'text',method: :delete,data: {confirm: 'Are you sure about that'} %></li>
+        <% else %>
+        <li><%=link_to "Log Me in",new_user_session_path,:class =>'text' %></li>
+        <% end %>
+        <li>Cart</li>
+      </ul>
+    </div>
+    </nav>
+    <nav class="navi">
+      <div class="navi-items">
+        <ul>
+          <li>Electronics
+            <div class="dropdown">
+               <ul>
+               <li>Mobiles</li>
+               <li>Laptops</li>
+               <li>Home Appliances</li> 
+               </ul>
+            </div>
+          </li>
+          <li>Garments
+            <div class="dropdown">
+               <ul>
+               <li>T-shirts</li>
+               <li>Pants</li>
+               <li>Jeans</li> 
+               <li>Formals</li> 
+               <li>Trousers</li> 
+               <li>Ethnic</li> 
+               </ul>
+            </div>
+
+          </li>
+          <li>Automobiles</li>
+        </ul>
+      </div>
+    </nav>
+    
+    <%= yield %>
+
+  </body>
+  <footer>
+    <br>
+    <p style="margin-bottom: 0px;">Hammad&copy;Tm<p>
+  </footer>
+</html>

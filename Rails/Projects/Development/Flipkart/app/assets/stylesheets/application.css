@@ -1,0 +1,153 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+ /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#1e5799+100,a5c9e5+100&0+35,1+100 */
+body{
+background: -moz-linear-gradient(left, rgba(165,201,229,0) 35%, rgba(165,201,229,1) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(left, rgba(165,201,229,0) 35%,rgba(165,201,229,1) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to right, rgba(165,201,229,0) 35%,rgba(165,201,229,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00a5c9e5', endColorstr='#a5c9e5',GradientType=1 ); /* IE6-9 */
+margin-right: 0px;
+margin-left: 0px;
+
+}
+
+
+.nav{
+	-webkit-box-shadow: -5px 7px 21px -1px rgba(104,132,189,1);
+-moz-box-shadow: -5px 7px 21px -1px rgba(104,132,189,1);
+box-shadow: -5px 7px 21px -1px rgba(104,132,189,1);
+	left: 0px;
+	top: 0px;
+	height: 40px;
+	position: fixed;
+	width: 100%;
+	background-color: #476aee;
+	font-family: "Comic Sans MS", cursive, sans-serif;
+	font-weight:bold;
+}
+.img{
+	padding-top:5px;
+	height: 33px;
+}
+.img:hover{
+	transform: scale(1.1);
+}
+.nav-items{
+	width: 80%;
+	margin-left: 10%;
+	margin-right: 10%;
+	height: 100%;
+}
+
+.nav ul{
+
+	list-style-type:none;
+	margin-top:auto;
+	margin-bottom: auto;
+	float: right; 
+}
+.nav ul li{
+	font-size: 18px;
+	padding:5px;
+	margin-right: 10px;
+	display: block;
+	width: 60px;
+	float: left;
+	color: white;
+	text-decoration: none;
+	border-radius: .5em;
+	background-color: blue;
+	text-align: center;
+	margin-top: 5px;
+
+}
+.nav ul li:hover{
+	background-color: white;
+	color: blue;
+}
+
+.text{
+	text-decoration: none;
+	color: white;
+	font-family: "Comic Sans MS", cursive, sans-serif;
+
+}
+.text:hover{
+	background-color: white;
+	color: blue;
+}
+.navi{
+	-webkit-box-shadow: 0px 2px 3px -1px rgba(0,0,0,0.81);
+-moz-box-shadow: 0px 2px 3px -1px rgba(0,0,0,0.81);
+box-shadow: 0px 2px 3px -1px rgba(0,0,0,0.81);
+	margin-top: 40px;
+	margin-right: 0px;
+	height: 35px;
+	background-color: white;
+	margin-bottom: 0px;
+}
+.navi ul{
+ 	list-style-type:none;
+ 	font-size: 1.4em;
+ 	margin-left: 130px;
+ 	padding: 0px;
+ 	height: 34px;
+ 	 
+
+}
+.navi ul li{
+	float: left;
+	padding-top: 5px;
+	display: block;
+	margin-left:20px; 
+	height: 100%;
+	color:black ;
+
+}
+.navi ul li:hover{
+	color: #848484;
+
+}
+.navi ul li:hover .dropdown{
+	display: block;
+
+}
+.dropdown{
+	display: none;
+	-webkit-box-shadow: 0px 0px 26px -4px rgba(0,0,0,0.43);
+-moz-box-shadow: 0px 0px 26px -4px rgba(0,0,0,0.43);
+box-shadow: 0px 0px 26px -4px rgba(0,0,0,0.43);
+	background-color: white;
+	position:absolute;
+	
+	height: 500px;
+	width:400px;
+}
+.dropdown ul{
+	margin-left: 0px;
+	margin-right: 10px;
+	text-decoration: none;
+
+	font-size: 15px;
+	
+}
+.dropdown ul li{
+	color: black;
+	float: none;
+	display: block;
+}
+.dropdown ul li:hover{
+	color: #a5a5a5;
