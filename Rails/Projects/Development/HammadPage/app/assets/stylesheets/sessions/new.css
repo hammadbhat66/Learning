@@ -34,3 +34,11 @@ a{
 	padding: 1em;
 	
 }
+.loopcomment{
+	border:1px #ccccc1 solid;
+	border-radius: .5em;
+	padding-top:1em;
+	padding-bottom:1em;
+	background-color: #e2e2e0;
+	margin-bottom: 5px;
+}

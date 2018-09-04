@@ -2,31 +2,34 @@
 <div class="logins">
 <p id="notice"><%= notice %></p>
 
-<p>
+<p style="font-size: 40px;">
   <strong>Title:</strong>
   <%= @post.title %>
 </p>
 
-<p>
+<p style="font-size: 13px;">
   <strong>Posting:</strong>
   <%= @post.posting %>
 </p>
   <h4>Comments</h4>
 
 <p> 
-	<div class="loopcomment">
+	
 	<% @comments.each do |com| %>
-
+    
 	  <% if com.post_id == @post.id %>
-	   <strong>by:<%= com.model.email %></strong><%= com.comment %>
+    <div class="loopcomment">
+	   <strong>by:<%= com.model.email %>
       <% if com.model ==current_model %>
      <%= link_to "Delete",post_comment_url(com),method: :delete,data: {comfirm: 'Are you'} %>
-     <% end %>
+     <% end %><br>Said:</strong><%= com.comment %>
+      
      <br>
-
+     </div>
 	  <% end %>
+    
 	<% end %>
-	</div>
+	
 </p>
 <p>
 	<%= form_for ([@post,@comment]) do |com| %>
