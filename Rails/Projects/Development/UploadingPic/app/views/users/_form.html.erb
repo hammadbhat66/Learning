@@ -1,0 +1,7 @@
+<%= form_for @user,html: { multipart: true },validate: true do |use| %>
+<%= use.label :name %><br>
+<%= use.text_field :name %>
+<br>
+<%= use.file_field :image %>
+<%= use.submit :submit %>
+<% end %>

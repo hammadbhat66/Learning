@@ -1,0 +1,26 @@
+							#Setting up devise authentication with email comfirmation
+
+1.Steps same as normal devise authentication but the differences are 
+
+2.In Config/Environment/Development along with
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  You have to type in delivery_method config
+  config.action_mailer.delivery_method = :smtp
+
+3.We have to configure the smtp in config/applications inside the class Application
+
+  module Nameoftheproject
+    class Application < Rails::Application
+      //smtp setting goes in here
+	ActionMailer::Base.smtp_settings = {
+	 
+	  address: 'smtp.gmail.com',
+	  domain:  'mail.google.com',
+	  port:     587,
+	  user_name: 'berylsystems11@gmail.com',
+	  password: 'changeit11',
+	  enable_start_tls: true
+	}
+    end
+  end
+	

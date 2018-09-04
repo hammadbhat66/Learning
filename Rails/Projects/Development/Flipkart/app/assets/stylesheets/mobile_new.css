@@ -1,0 +1,7 @@
+.cover{
+	display: grid;
+	grid-template-columns:300px auto;
+}
+.new{
+	border:1px black solid;
+}

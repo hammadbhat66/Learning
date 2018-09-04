@@ -1,0 +1,19 @@
+.mobileindex-cover{
+	
+	height: 1000px;
+	border: 2px black solid;
+
+}
+.sort-cover{
+	border: .5px black solid;
+}
+.mobile-all{
+	
+	
+	border: 10px pink solid;
+	height: 100%;
+	
+	display: grid;
+	grid-template-rows:auto;
+
+}

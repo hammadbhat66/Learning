@@ -1,0 +1,41 @@
+<div class="cover">
+  <div class="new">
+    <p style="background-color: green; color: white;"><%= notice %></p>
+    <%= form_for @mobile, validate: true, html: {multipart: true} do |mob| %>
+    <br>
+    <%= mob.label :brand %><br>
+    <%= mob.select :brand,options_for_select(['Samsung','Nokia','LG','Apple','Mi'], {selected: '2'}) %><br>
+
+    <%= mob.label :model %><br>
+    <%= mob.text_field :mobile_model %><br>
+    <%= mob.label :cost %><br>
+    <%= mob.text_field :cost,validate: { presence: true }%><br>
+    <%= mob.label :Info %><br>
+    <%= mob.text_area :brief %><br>
+    <%= mob.label :image %><br>
+    <%= mob.file_field :image %><br>
+    <%= mob.submit :submit %>
+
+    <% end %>
+  </div>
+
+  <div class="all">
+	<table>
+	  <tr>
+	    <th>Brand</th>
+	    <th>Model</th>
+	    <th>Cost</th>
+	  </tr>
+	  <% @Mobiles.each do |mobs| %>
+	    <tr>
+        <td><%= image_tag mobs.image.url(:medium) %></td>
+	      <td><%= mobs.brand %></td>
+	      <td><%= mobs.mobile_model %></td>
+	      <td><%= mobs.cost %></td>
+        <td><%= link_to "Delete", mobile_path(mobs),method: :delete,data:{comfirm: 'Are you sure about that'} %></td>
+	    </tr>
+	  <% end %>
+	</table>
+  </div>
+
+</div>

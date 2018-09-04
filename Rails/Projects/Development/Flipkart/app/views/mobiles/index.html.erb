@@ -1,0 +1,13 @@
+<div class="mobileindex-cover">
+	<nav class="mobile-nav">
+		
+	</nav>
+	<br>
+	<div class="mobile-all">
+		<% @mobiles.each do |mob| %>
+		<div class="one" style="height: 100%;background-image: url(<%= mob.image.url(:thumb) %>);background-repeat: no-repeat;background-position: center;"><%= mob.mobile_model %></div>
+		
+		<% end %>
+	</div>
+
+</div>

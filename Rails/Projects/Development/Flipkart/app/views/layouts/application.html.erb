@@ -7,6 +7,7 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
   </head>
 
   <body>
@@ -31,7 +32,7 @@
           <li>Electronics
             <div class="dropdown">
                <ul>
-               <li>Mobiles</li>
+               <li><%= link_to "Mobiles",mobiles_path %></li>
                <li>Laptops</li>
                <li>Home Appliances</li> 
                </ul>
@@ -53,8 +54,8 @@
           <li>Automobiles</li>
         </ul>
       </div>
-    </nav>
     
+    <div>
     <%= yield %>
 
   </body>
