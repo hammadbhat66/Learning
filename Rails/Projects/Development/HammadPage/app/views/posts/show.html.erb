@@ -31,11 +31,15 @@
 	<% end %>
 	
 </p>
+
 <p>
+
 	<%= form_for ([@post,@comment]) do |com| %>
       <%= com.text_area :comment%><br>
       <%= com.submit %>
     <% end %>
+    <button id="btn"></button>
+    <p id="show">show</p>
 
 </p>
   <%= link_to 'Edit', edit_post_path(@post) %> |

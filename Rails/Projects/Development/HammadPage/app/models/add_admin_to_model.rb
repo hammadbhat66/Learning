@@ -1,0 +1,2 @@
+class AddAdminToModel < ApplicationRecord
+end

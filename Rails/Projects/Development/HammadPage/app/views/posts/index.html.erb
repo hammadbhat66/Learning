@@ -1,8 +1,8 @@
 <p id="notice"><%= notice %></p>
 <div class="mainupper">
 <div class="posthead">
-<h1 class="heading">Posts </h1>
-<h2><%= link_to 'New Post', new_post_path, :class => 'newpost' %><h2>
+<h1 class="heading" id="tester">Posts </h1>
+<h2><%= link_to 'New Post', new_post_path,id: 'newp', :class => 'newpost'%><h2>
   </div>
 
 
@@ -21,14 +21,33 @@
         <%= link_to 'Destroy', post,:class => 'destroy' ,method: :delete, data: { confirm: 'Are you sure?' } %></li>
         <% end %>
       </ul>
+
       
       
     <% end %>
+    <div style="text-align: center;font-size: 15px;"><%= will_paginate @posts %></div>
   </tbody>
 
 
 <br>
 
 
+
+</div>
+
+
+
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <div style="text-align: center;">
+      <h1>Post</h1>
+      <%= render 'form', post: @post %>
+    </div>
+  </div>
 
 </div>

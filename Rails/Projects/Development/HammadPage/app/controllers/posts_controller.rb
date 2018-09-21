@@ -5,7 +5,12 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    if model_signed_in?
+      @post = current_model.posts.build
+      @posts = Post.paginate(:page => params[:page],:per_page => 5)
+    else
+    @posts = Post.paginate(:page => params[:page],:per_page => 5)
+    end
   end
 
   # GET /posts/1
@@ -14,7 +19,7 @@ class PostsController < ApplicationController
     
     @comment = Comment.new
     @comments =Comment.all
-    @i =0
+    
 
     
   end
@@ -39,6 +44,7 @@ class PostsController < ApplicationController
       if @post.save
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
         format.json { render :show, status: :created, location: @post }
+
       else
         format.html { render :new }
         format.json { render json: @post.errors, status: :unprocessable_entity }
